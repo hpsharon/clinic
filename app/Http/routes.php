@@ -14,7 +14,7 @@
 Route::get('/', 'HomeController@index');
 
 Route::get('/dashboard', function () {
-    return view('AdminLTE/dashboard');
+    return view('dashboard');
 });
 
 
