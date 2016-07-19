@@ -9,14 +9,14 @@ define([
         el: document.body,
 
         initialize: function () {
-            alert('main.js');
+            console.log("main.js init");
             BaseControl.prototype.initialize.call(this, "mainControl");
 
             this.render();
         },
 
         render: function () {
-
+            console.log("render.js init");
             BaseControl.prototype.render.call(this);
 
             // a fix for hovering over select2 boxes.

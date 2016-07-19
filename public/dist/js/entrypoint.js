@@ -1,13 +1,13 @@
 requirejs.config({
     paths: {
-        jquery: "/../plugins/jQuery/jquery-2.2.3.min",
+        jQuery: "/../plugins/jQuery/jquery-2.2.3.min",
         AdminLTE: "/../dist/js/adminLTE",
-        underscore: "/../../plugins/underscore/underscore",
-        backbone: "/../../plugins/backbone/backbone",
+        Underscore: "/../../plugins/underscore/underscore",
+        Backbone: "/../../plugins/backbone/backbone",
         moment: "/../../plugins/moment/moment-with-locales",
         Bootstrap:'/../../bootstrap/js/bootstrap.min',
         slimscroll: '/../../plugins/slimScroll/jquery.slimscroll.min.js',
-        application: "/../dist/js/controls/application"
+        application: "/../dist/js/application"
     },
     //Remember: only use shim config for non-AMD scripts,
     //scripts that do not already call define(). The shim
@@ -16,31 +16,38 @@ requirejs.config({
     //be triggered, and the deps config will be confusing
     //for those cases.
     shim: {
-        'backbone': {
+        'Backbone': {
             //These script dependencies should be loaded before loading
             //backbone.js
-            deps: ['underscore', 'jquery'],
+            deps: ['Underscore', 'jQuery'],
             //Once loaded, use the global 'Backbone' as the
             //module value.
             exports: 'Backbone'
         },
-        'underscore': {
+        'Underscore': {
             exports: '_'
         },
-        AdminLTE: {
-            deps: ['jquery', 'Bootstrap'],
+        'AdminLTE': {
+            deps: ['jQuery', 'Bootstrap'],
             exports: 'AdminLTE'
         },
-        jquery: {
+        'jQuery': {
             exports: "$"
         },
-        Bootstrap: {
-            deps: ['jquery']
+        'Bootstrap': {
+            deps: ['jQuery']
         },
-        slimscroll: {
-            deps: ['jquery']
+        'slimscroll': {
+            deps: ['jQuery']
         }
-    }
+    },
+    deps: [
+        "jQuery",
+        "Underscore",
+        "Backbone",
+        "AdminLTE",
+        "application"
+    ]
 });
 
 //Then, later in a separate file, call it 'MyModel.js', a module is
@@ -48,6 +55,6 @@ requirejs.config({
 //the shim config to properly load 'backbone' and give a local
 //reference to this module. The global Backbone will still exist on
 //the page too.
-define(['backbone', 'AdminLTE', 'jquery'], function (Backbone, AdminLTE) {
-    return console.log(1);
+define(['application', 'Backbone', 'AdminLTE', 'jQuery'], function (application, Backbone, AdminLTE, $) {
+    return application.initialize();
 });
