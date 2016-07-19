@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+
 
 class HomeController extends Controller
 {
@@ -25,5 +27,15 @@ class HomeController extends Controller
     public function index()
     {
         return view('dashboard');
+    }
+
+    public function getLoggedInUser()
+    {
+        $user = "";
+        if (Auth::check())
+        {
+            $user = Auth::user();
+        }
+        return $user->toArray();
     }
 }

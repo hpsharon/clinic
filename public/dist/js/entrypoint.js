@@ -4,6 +4,8 @@ requirejs.config({
         AdminLTE: "/../dist/js/adminLTE",
         Underscore: "/../../plugins/underscore/underscore",
         Backbone: "/../../plugins/backbone/backbone",
+        Promise: "/../../plugins/bluebird/bluebird.min",
+        AjaxControl: "/../dist/js/controls/ajaxControl/ajaxControl",
         moment: "/../../plugins/moment/moment-with-locales",
         Bootstrap:'/../../bootstrap/js/bootstrap.min',
         slimscroll: '/../../plugins/slimScroll/jquery.slimscroll.min.js',
@@ -23,6 +25,14 @@ requirejs.config({
             //Once loaded, use the global 'Backbone' as the
             //module value.
             exports: 'Backbone'
+        },
+        'Promise': {
+            deps: ['jQuery'],
+            exports: "Promise"
+        },
+        'AjaxControl': {
+            deps: ['Promise'],
+            exports: "AjaxControl",
         },
         'Underscore': {
             exports: '_'

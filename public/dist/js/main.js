@@ -2,14 +2,17 @@ define([
     "Backbone",
     "Underscore",
     "jQuery",
-    "dist/js/controls/baseControl/baseControl.js"
-], function (Backbone, _, $, BaseControl) {
+    "dist/js/controls/baseControl/baseControl.js",
+    "AjaxControl"
+], function (Backbone, _, $, BaseControl, AjaxControl) {
 
     return BaseControl.extend({
         el: document.body,
 
         initialize: function () {
             console.log("main.js init");
+            // AjaxControl.sendRequest("/getLoggedInUser")
+            //     .then(this._showLoggedInUser);
             BaseControl.prototype.initialize.call(this, "mainControl");
 
             this.render();
@@ -32,6 +35,10 @@ define([
             return _.extend({}, BaseControl.prototype.events, {
 
             });
+        },
+
+        _showLoggedInUser: function () {
+            console.log(arguments);
         }
     });
 
