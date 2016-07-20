@@ -11,8 +11,8 @@ define([
 
         initialize: function () {
             console.log("main.js init");
-            // AjaxControl.sendRequest("/getLoggedInUser")
-            //     .then(this._showLoggedInUser);
+            AjaxControl.sendRequest("/getLoggedInUser")
+                .then(this._showLoggedInUser);
             BaseControl.prototype.initialize.call(this, "mainControl");
 
             this.render();
@@ -37,8 +37,8 @@ define([
             });
         },
 
-        _showLoggedInUser: function () {
-            console.log(arguments);
+        _showLoggedInUser: function (user) {
+            console.log(user);
         }
     });
 

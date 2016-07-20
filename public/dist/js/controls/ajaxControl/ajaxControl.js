@@ -20,7 +20,7 @@ define([
                     data : JSON.stringify(requestData)
                 }).done(resolve).fail(reject);
             }.bind(this))
-                .timeout(this._TIMEOUT, this._getTimeoutStr(datatype))
+                .timeout(this._TIMEOUT, this._getTimeoutStr(url))
                 .catch(this._defaultCatcher);
 
             return promise;

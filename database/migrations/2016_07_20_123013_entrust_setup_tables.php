@@ -54,6 +54,14 @@ class EntrustSetupTables extends Migration
 
             $table->primary(['permission_id', 'role_id']);
         });
+
+//        INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
+//        (1, 'SYSTEM_ADMIN', 'System Administrator', 'System Administrator', '2016-07-20 09:35:08', '2016-07-20 09:35:08'),
+//        (2, 'ORG_ADMIN', 'Organization Administrator', 'Organization Administrator', '2016-07-20 09:35:34', '2016-07-20 09:35:34'),
+//        (3, 'THERAPIST', 'Therapist', 'Therapist', '2016-07-20 10:51:23', '2016-07-20 10:51:23'),
+//        (4, 'SOLO_THERAPIST', 'Solo Therapist', 'Solo Therapist', '2016-07-20 10:51:23', '2016-07-20 10:51:23'),
+//        (5, 'PATIENT', 'Patient', 'Patient', '2016-07-20 10:51:24', '2016-07-20 10:51:24'),
+//        (6, 'PARENT', 'Parent', 'Parent', '2016-07-20 10:51:24', '2016-07-20 10:51:24');
     }
 
     /**

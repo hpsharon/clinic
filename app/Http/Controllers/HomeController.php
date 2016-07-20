@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Role;
 
 
 class HomeController extends Controller
@@ -31,11 +32,15 @@ class HomeController extends Controller
 
     public function getLoggedInUser()
     {
-        $user = "";
         if (Auth::check())
         {
             $user = Auth::user();
+            $arr = $user->toArray();
+            $arr['roles'] = $user->roles;
+        } else {
+            $arr = "";
         }
-        return $user->toArray();
+        return $arr;
     }
+
 }
