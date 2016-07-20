@@ -7,6 +7,7 @@ define([
     "use strict";
 
     var AjaxControl =  Backbone.Model.extend({
+        _TIMEOUT: 500000,
 
         initialize: function () {
 
@@ -19,6 +20,7 @@ define([
                     data : JSON.stringify(requestData)
                 }).done(resolve).fail(reject);
             }.bind(this))
+                .timeout(this._TIMEOUT, this._getTimeoutStr(datatype))
                 .catch(this._defaultCatcher);
 
             return promise;
