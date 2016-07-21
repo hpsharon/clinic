@@ -8,28 +8,31 @@ use App\Role;
 
 class User extends Authenticatable
 {
-    protected  $attributes = ['roles'];
     use EntrustUserTrait;
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
+    protected $fillable = ['name', 'email', 'password'];
 
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    protected $hidden = ['password', 'remember_token'];
+
+    protected $appends = ['roles'];
 
     public function roles()
     {
         return $this->belongsToMany('App\Role');
     }
+
+    public function getRolesAttribute()
+    {
+        return $this->attributes['roles'] = $this->roles()->get();
+    }
+    
 }

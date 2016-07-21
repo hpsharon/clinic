@@ -36,7 +36,6 @@ class HomeController extends Controller
         {
             $user = Auth::user();
             $arr = $user->toArray();
-            $arr['roles'] = $user->roles;
         } else {
             $arr = "";
         }
