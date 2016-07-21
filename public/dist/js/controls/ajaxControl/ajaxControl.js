@@ -17,7 +17,7 @@ define([
             var promise = new Promise(function (resolve, reject){
                 $.ajax({
                     url : url,
-                    data : JSON.stringify(requestData)
+                    data : requestData
                 }).done(resolve).fail(reject);
             }.bind(this))
                 .timeout(this._TIMEOUT, this._getTimeoutStr(url))

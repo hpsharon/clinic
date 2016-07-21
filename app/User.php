@@ -21,18 +21,29 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token'];
+    protected $hidden = ['password', 'remember_token', 'created_at', 'updated_at', 'organization_id'];
 
-    protected $appends = ['roles'];
+    protected $appends = ['roles', 'organization'];
 
     public function roles()
     {
         return $this->belongsToMany('App\Role');
     }
 
+    public function organization()
+    {
+        return $this->belongsTo("App\Organization");
+    }
+
+
     public function getRolesAttribute()
     {
         return $this->attributes['roles'] = $this->roles()->get();
+    }
+
+    public function getOrganizationAttribute()
+    {
+        return $this->attributes['organization'] = $this->Organization()->get();
     }
     
 }

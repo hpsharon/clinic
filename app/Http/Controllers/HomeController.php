@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Role;
-
+use App\Organization;
 
 class HomeController extends Controller
 {
@@ -40,6 +40,12 @@ class HomeController extends Controller
             $arr = "";
         }
         return $arr;
+    }
+
+    public function getOrgById(Request $request) {
+        $orgId = $request->input("id");
+        $org = Organization::find($orgId);
+        return $org->toArray();
     }
 
 }

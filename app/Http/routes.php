@@ -27,3 +27,4 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 Route::get('/getLoggedInUser', 'HomeController@getLoggedInUser');
+Route::get('/getOrgById', 'HomeController@getOrgById');
