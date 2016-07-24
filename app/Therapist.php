@@ -18,7 +18,9 @@ class Therapist extends User
 
     public function roles()
     {
-        return $this->belongsToMany('App\Role', "role_user", "user_id");
+        $table = "role_user";
+        $foreignKey = "user_id";
+        return $this->belongsToMany('App\Role', $table, $foreignKey);
     }
 
 }
