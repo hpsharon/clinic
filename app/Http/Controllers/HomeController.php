@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Therapist;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Role;
 use App\Organization;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -45,6 +47,31 @@ class HomeController extends Controller
     public function getOrgById(Request $request) {
         $orgId = $request->input("id");
         $org = Organization::find($orgId);
+        return $org->toArray();
+    }
+
+    public function createNewTherapist() {
+        $attributes = [
+            "name" => "Ther 1",
+            "email" => "ther1@mmm.com",
+            "password" => bcrypt(1234)
+        ];
+        $therapist = new Therapist($attributes);
+        $org = Auth::user()->organization;
+        $therapist->organization_id = 1;
+        $therapist->save();
+        return $therapist->toArray();
+    }
+
+    public function createNewOrganization()
+    {
+        $args = [
+            "name" => "clinic 1",
+            "address" => "clinic 1 address",
+            "phone" => "clinic 1 phone"
+        ];
+        $org = new Organization($args);
+        $org->save();
         return $org->toArray();
     }
 
