@@ -30,3 +30,4 @@ Route::get('/getLoggedInUser', 'HomeController@getLoggedInUser');
 Route::get('/getOrgById', 'HomeController@getOrgById');
 Route::get('/createNewTherapist', 'HomeController@createNewTherapist');
 Route::get('/createNewOrganization', 'HomeController@createNewOrganization');
+Route::get('/createNewPatient', 'HomeController@createNewPatient');

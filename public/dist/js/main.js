@@ -11,7 +11,7 @@ define([
 
         initialize: function () {
             console.log("main.js init");
-            AjaxControl.sendRequest("/createNewOrganization")
+            AjaxControl.sendRequest("/createNewPatient")
                 .then(this._showLoggedInUser);
             BaseControl.prototype.initialize.call(this, "mainControl");
 

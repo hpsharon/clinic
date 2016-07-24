@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Patient;
 use App\Therapist;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
@@ -58,7 +59,7 @@ class HomeController extends Controller
         ];
         $therapist = new Therapist($attributes);
         $org = Auth::user()->organization;
-        $therapist->organization_id = 1;
+        $therapist->organization_id = 2;
         $therapist->save();
         return $therapist->toArray();
     }
@@ -73,6 +74,18 @@ class HomeController extends Controller
         $org = new Organization($args);
         $org->save();
         return $org->toArray();
+    }
+
+    public function createNewPatient() {
+        $attributes = [
+            "name" => "Patient 1",
+            "email" => "patient1@mmm.com",
+            "password" => bcrypt(1234)
+        ];
+        $patient = new Patient($attributes);
+        $patient->organization_id = 2;
+        $patient->save();
+        return $patient->toArray();
     }
 
 }
