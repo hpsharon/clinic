@@ -30,7 +30,7 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Role');
     }
 
-    public function organization()
+    public function Organization()
     {
         return $this->belongsTo("App\Organization");
     }

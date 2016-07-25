@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Patient;
-use App\Therapist;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Role;
 use App\Organization;
 use App\User;
+use App\Patient;
+use App\Therapist;
 
 class HomeController extends Controller
 {
@@ -53,23 +54,25 @@ class HomeController extends Controller
 
     public function createNewTherapist() {
         $attributes = [
-            "name" => "Ther 1",
-            "email" => "ther1@mmm.com",
+            "name" => "Ther 3",
+            "email" => "ther3@mmm.com",
             "password" => bcrypt(1234)
         ];
+        $role = Role::find(3);
         $therapist = new Therapist($attributes);
-        $org = Auth::user()->organization;
-        $therapist->organization_id = 2;
+        $organization = Organization::find(3);
+        $therapist->Organization()->associate($organization);
         $therapist->save();
+        $therapist->attachRole($role);
         return $therapist->toArray();
     }
 
     public function createNewOrganization()
     {
         $args = [
-            "name" => "clinic 1",
-            "address" => "clinic 1 address",
-            "phone" => "clinic 1 phone"
+            "name" => "clinic 2",
+            "address" => "clinic 2 address",
+            "phone" => "clinic 2 phone"
         ];
         $org = new Organization($args);
         $org->save();
@@ -78,14 +81,27 @@ class HomeController extends Controller
 
     public function createNewPatient() {
         $attributes = [
-            "name" => "Patient 1",
-            "email" => "patient1@mmm.com",
-            "password" => bcrypt(1234)
+            "name" => "Patient 3"
         ];
         $patient = new Patient($attributes);
-        $patient->organization_id = 2;
+        $organization = Organization::find(3);
+        $patient->Organization()->associate($organization);
         $patient->save();
         return $patient->toArray();
+    }
+
+    public function getTherapist()
+    {
+//        $user = Patient::find(15);
+        $user = Therapist::find(13);
+        return $user->toArray();
+    }
+
+    public function getPatient()
+    {
+        $patient = Patient::find(3);
+        return $patient->toArray();
+
     }
 
 }
