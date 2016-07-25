@@ -8,8 +8,8 @@ class Patient extends Model
 {
 
     protected $fillable = ['name'];
-    protected $appends = ['therapist', 'organization'];
-    protected $hidden = ['organization_id', "created_at", "deleted_at", "therapist_id"];
+    protected $appends = ['therapist', 'organization', 'parents'];
+    protected $hidden = ['organization_id', "created_at", "deleted_at", "therapist_id", "updated_at"];
 
     public function therapists()
     {
@@ -24,6 +24,11 @@ class Patient extends Model
         return $this->belongsTo("App\Organization");
     }
 
+    public function Parents()
+    {
+        return $this->hasMany("App\Parent_Patient");
+    }
+
     public function getTherapistAttribute()
     {
         return $this->attributes['therapists'] = $this->Therapists()->get();
@@ -32,5 +37,10 @@ class Patient extends Model
     public function getOrganizationAttribute()
     {
         return $this->attributes['organization'] = $this->Organization()->get();
+    }
+
+    public function getParentsAttribute()
+    {
+        return $this->attributes['parents'] = $this->Parents()->get();
     }
 }

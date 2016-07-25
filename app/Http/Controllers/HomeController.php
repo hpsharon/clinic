@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Parent_Patient;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
@@ -99,9 +100,22 @@ class HomeController extends Controller
 
     public function getPatient()
     {
-        $patient = Patient::find(3);
+        $patient = Patient::find(2);
         return $patient->toArray();
 
+    }
+
+    public function createNewParent()
+    {
+        $parent = new Parent_Patient([
+            "name" => "parent 2 for patient 2",
+            "email" => "email",
+            "phone" => '050-556232565'
+        ]);
+        $patient = Patient::find(2);
+        $parent->Patient()->associate($patient);
+        $parent->save();
+        return $parent->toArray();
     }
 
 }

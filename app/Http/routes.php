@@ -33,3 +33,4 @@ Route::get('/createNewOrganization', 'HomeController@createNewOrganization');
 Route::get('/createNewPatient', 'HomeController@createNewPatient');
 Route::get('/getTherapist', 'HomeController@getTherapist');
 Route::get('/getPatient', 'HomeController@getPatient');
+Route::get('/createNewParent', 'HomeController@createNewParent');
