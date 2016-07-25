@@ -29,6 +29,11 @@ class Patient extends Model
         return $this->hasMany("App\Parent_Patient");
     }
 
+    public function getMeetings()
+    {
+        return $this->belongsToMany("App\Meeting")->get();
+    }
+
     public function getTherapistAttribute()
     {
         return $this->attributes['therapists'] = $this->Therapists()->get();
@@ -42,5 +47,10 @@ class Patient extends Model
     public function getParentsAttribute()
     {
         return $this->attributes['parents'] = $this->Parents()->get();
+    }
+
+    public function getMeetingsAttribute()
+    {
+        return $this->attributes['meetings'] = $this->Meetings()->get();
     }
 }

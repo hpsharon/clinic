@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Meeting;
 use App\Parent_Patient;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
@@ -101,7 +103,7 @@ class HomeController extends Controller
     public function getPatient()
     {
         $patient = Patient::find(2);
-        return $patient->toArray();
+        return $patient->getMeetings();
 
     }
 
@@ -116,6 +118,28 @@ class HomeController extends Controller
         $parent->Patient()->associate($patient);
         $parent->save();
         return $parent->toArray();
+    }
+
+    public function createNewMeeting()
+    {
+        $meeting = new Meeting([
+            "start_time" => Carbon::now(),
+            "end_time" => Carbon::now()->addMinute(50),
+            "goals" => "goals meeting 2",
+            "tools" => "tools meeting 2",
+            "description" => "description meeting 2",
+            "remarks" => "remarks meeting 2",
+        ]);
+        $organization = Organization::find(2);
+        $meeting->Organization()->associate($organization);
+        $meeting->save();
+        return $meeting->toArray();
+    }
+
+    public function getMeeting()
+    {
+        $meeting = Meeting::find(1);
+        return $meeting->toArray();
     }
 
 }

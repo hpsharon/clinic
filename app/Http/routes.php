@@ -34,3 +34,5 @@ Route::get('/createNewPatient', 'HomeController@createNewPatient');
 Route::get('/getTherapist', 'HomeController@getTherapist');
 Route::get('/getPatient', 'HomeController@getPatient');
 Route::get('/createNewParent', 'HomeController@createNewParent');
+Route::get('/createNewMeeting', 'HomeController@createNewMeeting');
+Route::get('/getMeeting', 'HomeController@getMeeting');
