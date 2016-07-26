@@ -46,9 +46,13 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $e)
     {
         $response = parent::render($request, $e);
-        if ($e->getStatusCode() == 401) {
-            $response->setContent($e->getMessage());
+
+        if (method_exists($e, "getStatusCode")) {
+            if ($e->getStatusCode() == 401) {
+                $response->setContent($e->getMessage());
+            }
         }
+
         return $response;
     }
 }
