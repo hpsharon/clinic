@@ -30,9 +30,8 @@ define([
             return "Warning! Callback has yet to be received: " + url;
         },
 
-        _defaultCatcher: function () {
-            console.log(arguments);
-            console.log("this is the default catcher, ajaxControl");
+        _defaultCatcher: function (promise) {
+            console.log(promise);
         }
 
     });

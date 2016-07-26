@@ -40,18 +40,27 @@ class OrganizationController extends Controller
         return $org;
     }
 
+    /**
+     * Returns all orgs that in the system
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
     public function getAllOrgs()
     {
         $this->checkPermissionsForGettingAllOrgs();
         return Organization::all();
     }
 
+    /**
+     * @param $orgId the organization id to delete
+     * @return bool
+     */
     public function deleteOrg($orgId)
     {
         Organization::destroy($orgId);
         return true;
     }
 
+    
     private function checkPermissionsForCreatingNewOrg()
     {
         $loggedInUser = Auth::user();
