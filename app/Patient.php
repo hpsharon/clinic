@@ -9,7 +9,7 @@ class Patient extends Model
 
     protected $fillable = ['name'];
     protected $appends = ['therapist', 'organization', 'parents'];
-    protected $hidden = ['organization_id', "created_at", "deleted_at", "therapist_id", "updated_at"];
+    protected $hidden = ['organization_id', "created_at", "deleted_at", "therapist_id", "updated_at", "pivot"];
 
     public function therapists()
     {
