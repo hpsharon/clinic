@@ -19,10 +19,7 @@ class Meeting extends Model
 
     public function Patients()
     {
-        $table = "meeting_patient";
-        $foreignKey = "meeting_id";
-        $query = $this->belongsToMany("App\Patient", $table, $foreignKey)->getQuery()->toSql();
-        return $this->belongsToMany("App\Patient", $table, $foreignKey);
+        return $this->belongsToMany("App\Patient");
     }
 
     public function getPatientsAttribute()
