@@ -54,6 +54,29 @@ class HomeController extends Controller
         $org = Organization::find($orgId);
         return $org->toArray();
     }
+    
+    public function deleteOrg(Request $request) 
+    {
+        $orgId = $request->input("orgId");
+        $orgController = new OrganizationController();
+        $orgController->deleteOrg($orgId);
+    }
+
+    public function updateOrganization(Request $request)
+    {
+        $orgId = $request->input("orgId");
+        $paramsToUpdate = $request->input("params");
+        $orgController = new OrganizationController();
+        $org = $orgController->updateOrganization($orgId, $paramsToUpdate);
+        return $org;
+    }
+
+    public function getAllOrgs()
+    {
+        $orgController = new OrganizationController();
+        $orgs = $orgController->getAllOrgs();
+        return $orgs;
+    }
 
     public function createNewTherapist() {
         $attributes = [
@@ -68,18 +91,6 @@ class HomeController extends Controller
         $therapist->save();
         $therapist->attachRole($role);
         return $therapist->toArray();
-    }
-
-    public function createNewOrganization()
-    {
-        $args = [
-            "name" => "clinic 2",
-            "address" => "clinic 2 address",
-            "phone" => "clinic 2 phone"
-        ];
-        $org = new Organization($args);
-        $org->save();
-        return $org->toArray();
     }
 
     public function createNewPatient() {

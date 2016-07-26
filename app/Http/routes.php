@@ -29,10 +29,18 @@ Route::get('/home', 'HomeController@index');
 Route::get('/getLoggedInUser', 'HomeController@getLoggedInUser');
 Route::get('/getOrgById', 'HomeController@getOrgById');
 Route::get('/createNewTherapist', 'HomeController@createNewTherapist');
-Route::get('/createNewOrganization', 'HomeController@createNewOrganization');
+
 Route::get('/createNewPatient', 'HomeController@createNewPatient');
 Route::get('/getTherapist', 'HomeController@getTherapist');
 Route::get('/getPatient', 'HomeController@getPatient');
 Route::get('/createNewParent', 'HomeController@createNewParent');
 Route::get('/createNewMeeting', 'HomeController@createNewMeeting');
 Route::get('/getMeeting', 'HomeController@getMeeting');
+
+
+//ORGANIZATION
+
+Route::get('/createNewOrganization', 'OrganizationController@createNewOrganization');
+Route::get('/updateOrganization', 'HomeController@updateOrganization');
+Route::get('/getAllOrgs', 'HomeController@getAllOrgs');
+Route::get('/deleteOrg', 'HomeController@deleteOrg');
