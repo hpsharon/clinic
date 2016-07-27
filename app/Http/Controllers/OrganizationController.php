@@ -15,9 +15,9 @@ class OrganizationController extends Controller
      * @param Request $request: contains array called 'organization' with the org details
      * @return array|string
      */
-    public function createNewOrganization(Request $request)
+    public static function createNewOrganization(Request $request)
     {
-        $this->checkPermissionsForCreatingNewOrg();
+        OrganizationController::checkPermissionsForCreatingNewOrg();
         $organization = $request->input("organization");
         $org = new Organization($organization);
         $org->save();
@@ -29,9 +29,9 @@ class OrganizationController extends Controller
      * @param $arr_valuesToUpdate key-value array with the params to update org
      * @return mixed
      */
-    public function updateOrganization($orgId, $arr_valuesToUpdate)
+    public static function updateOrganization($orgId, $arr_valuesToUpdate)
     {
-        $this->checkPermissionForUpdateOrg();
+        OrganizationController::checkPermissionForUpdateOrg();
         $org = Organization::find($orgId);
         foreach($arr_valuesToUpdate as $key => $value) {
             $org[$key] = $value;
@@ -44,9 +44,9 @@ class OrganizationController extends Controller
      * Returns all orgs that in the system
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
-    public function getAllOrgs()
+    public static function getAllOrgs()
     {
-        $this->checkPermissionsForGettingAllOrgs();
+        OrganizationController::checkPermissionsForGettingAllOrgs();
         return Organization::all();
     }
 
@@ -54,13 +54,21 @@ class OrganizationController extends Controller
      * @param $orgId the organization id to delete
      * @return bool
      */
-    public function deleteOrg($orgId)
+    public static function deleteOrg($orgId)
     {
         Organization::destroy($orgId);
         return true;
     }
 
-    
+    public static function getAllUsersForOrg($orgId)
+    {
+        $org = Organization::findOrFail($orgId);
+        $users = $org->users()->get();
+        $orgPatients = $org->patients()->get();
+        return $users->merge($orgPatients);
+
+    }
+
     private function checkPermissionsForCreatingNewOrg()
     {
         $loggedInUser = Auth::user();

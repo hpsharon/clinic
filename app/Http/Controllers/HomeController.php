@@ -58,24 +58,37 @@ class HomeController extends Controller
     public function deleteOrg(Request $request) 
     {
         $orgId = $request->input("orgId");
-        $orgController = new OrganizationController();
-        $orgController->deleteOrg($orgId);
+        OrganizationController::deleteOrg($orgId);
+    }
+    
+    public function getAllUsersForOrg(Request $request)
+    {
+        $orgId = $request->input("orgId");
+
+        $users = OrganizationController::getAllUsersForOrg($orgId);
+        return $users;
     }
 
     public function updateOrganization(Request $request)
     {
         $orgId = $request->input("orgId");
         $paramsToUpdate = $request->input("params");
-        $orgController = new OrganizationController();
-        $org = $orgController->updateOrganization($orgId, $paramsToUpdate);
+        $org = OrganizationController::updateOrganization($orgId, $paramsToUpdate);
         return $org;
     }
 
     public function getAllOrgs()
     {
-        $orgController = new OrganizationController();
-        $orgs = $orgController->getAllOrgs();
+        $orgs = OrganizationController::getAllOrgs();
         return $orgs;
+    }
+    
+    public function createNewUser(Request $request)
+    {
+        $orgId = $request->input("orgId");
+        $roleId = $request->input("roleId");
+        $userDetails = $request->input("userDetails");
+        UserController::createUserForOrgId($userDetails, $orgId, $roleId);
     }
 
     public function createNewTherapist() {
