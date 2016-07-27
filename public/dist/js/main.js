@@ -12,9 +12,9 @@ define([
         initialize: function () {
             console.log("main.js init");
             var data = {
-                orgId: 5
+                orgId: 2
             }
-            AjaxControl.sendRequest("/deleteOrg", data)
+            AjaxControl.sendRequest("/getAllUsersForOrg", data)
                 .then(this._showLoggedInUser);
             BaseControl.prototype.initialize.call(this, "mainControl");
 
