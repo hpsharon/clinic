@@ -10,13 +10,6 @@ class Therapist extends User
     protected $table = 'users';
     protected $appends = ['patients', 'organization'];
 
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-        $this->save();
-        $this->attachRole(3);
-    }
-
     public function roles()
     {
         $table = "role_user";
@@ -26,7 +19,7 @@ class Therapist extends User
 
     public function patients()
     {
-        return $this->hasMany("App\Patient");
+        return $this->belongsToMany("App\Patient");
 
     }
 

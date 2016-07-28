@@ -12,6 +12,7 @@ class UserController extends Controller
 {
     public static function createUserForOrgId($arr_userDetails, $orgId, $roleId)
     {
+        //TODO:: check permission for creating user
         $arr_userDetails["password"] = bcrypt($arr_userDetails["password"]);
         $user = new User($arr_userDetails);
         $user->Organization()->associate(Organization::findOrFail($orgId));

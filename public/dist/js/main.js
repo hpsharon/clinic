@@ -12,9 +12,16 @@ define([
         initialize: function () {
             console.log("main.js init");
             var data = {
-                orgId: 2
+                // orgId: 2,
+                // userDetails: {
+                //     name:"חן פליישר",
+                //     email: "chen.flyser@gmail.com",
+                //     password: "1234"
+                // }
+                therapistId: 76,
+                patientId: [1]
             }
-            AjaxControl.sendRequest("/getAllUsersForOrg", data)
+            AjaxControl.sendRequest("/syncTherapistWithPatients", data)
                 .then(this._showLoggedInUser);
             BaseControl.prototype.initialize.call(this, "mainControl");
 

@@ -48,3 +48,9 @@ Route::get('/getAllUsersForOrg', 'HomeController@getAllUsersForOrg');
 
 //USER
 Route::get('/createNewUser', 'HomeController@createNewUser');
+
+//Therapist
+
+Route::get('/createNewTherapistForOrg', 'HomeController@createNewTherapistForOrg');
+Route::get('/associateTherapistToSinglePatient', 'HomeController@associateTherapistToSinglePatient');
+Route::get('/syncTherapistWithPatients', 'HomeController@syncTherapistWithPatients');

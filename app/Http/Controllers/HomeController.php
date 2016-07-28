@@ -91,19 +91,27 @@ class HomeController extends Controller
         UserController::createUserForOrgId($userDetails, $orgId, $roleId);
     }
 
-    public function createNewTherapist() {
-        $attributes = [
-            "name" => "Ther 3",
-            "email" => "ther3@mmm.com",
-            "password" => bcrypt(1234)
-        ];
-        $role = Role::find(3);
-        $therapist = new Therapist($attributes);
-        $organization = Organization::find(3);
-        $therapist->Organization()->associate($organization);
-        $therapist->save();
-        $therapist->attachRole($role);
-        return $therapist->toArray();
+    public function createNewTherapistForOrg(Request $request) {
+        $userDetails = $request->input("userDetails");
+        $orgId = $request->input("orgId");
+        $therapist = TherapistController::createNewTherapistForOrg($userDetails, $orgId);
+        return $therapist;
+    }
+    
+    public function associateTherapistToSinglePatient(Request $request)
+    {
+        $therapistId = $request->input("therapistId");
+        $patientId = $request->input("patientId");
+        $therapist = TherapistController::associateTherapistToSinglePatient($therapistId, $patientId);
+        return $therapist;
+    }
+    
+    public function syncTherapistWithPatients(Request $request)
+    {
+        $therapistId = $request->input("therapistId");
+        $patientId = $request->input("patientId");
+        $therapist = TherapistController::syncTherapistWithPatients($therapistId, $patientId);
+        return $therapist;
     }
 
     public function createNewPatient() {
