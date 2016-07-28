@@ -14,4 +14,14 @@ class ParentController extends Controller
         $parent = new Parent_Patient($parentDetails);
         return $parent;
     }
+
+    public static function updateParent($parentId, $parentDetails)
+    {
+        $parent = Parent_Patient::find($parentId);
+        foreach($parentDetails as $key => $value) {
+            $parent[$key] = $value;
+        }
+        $parent->save();
+        return $parent;
+    }
 }

@@ -125,6 +125,19 @@ class HomeController extends Controller
         $patient = PatientController::createNewPatient($arr_userDetails, $organizationId, $arr_therapistIds, $arr_parents);
         return $patient;
     }
+    
+    public function updatePatient(Request $request)
+    {
+        $data = $request->input("userDetails");
+        $patientId = $data['patientId'];
+        $arr_userDetails = [
+            "name" => $data['name']
+        ];
+        $arr_therapistIds = array_key_exists('arr_therapistIds', $data) ? $data['arr_therapistIds'] : [];
+        $arr_parents = $data['parents'];
+        $patient = PatientController::updatePatient($patientId, $arr_userDetails, $arr_therapistIds, $arr_parents);
+        return $patient;
+    }
 
     
 

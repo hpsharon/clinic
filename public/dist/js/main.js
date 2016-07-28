@@ -13,24 +13,28 @@ define([
             console.log("main.js init");
             var data = {
                 userDetails: {
-                    name:"מטופל של חן",
+                    name:"מטופל של חןןןן",
+                    patientId: 6,
                     organizationId: 2,
                     arr_therapistIds: [76],
                     parents: [
                         {
-                            name: "אבא של מטופל של חן",
+
+                            name: "אבא של מטופל של חןןןןן",
                             email: "mail@mail.com",
-                            phone: "052-5555555"
+                            phone: "052-5555555",
+                            parentId: 6
                         },
                         {
-                            name: " אמא של מטופל של חן",
+                            name: " אמא של מטופל של חןןןן",
                             email: "mail@mail.com",
-                            phone: "052-5555555"
+                            phone: "052-5555555",
+                            parentId: 7
                         }
                     ]
                 }
             }
-            AjaxControl.sendRequest("/createNewPatient", data)
+            AjaxControl.sendRequest("/updatePatient", data)
                 .then(this._showLoggedInUser);
             BaseControl.prototype.initialize.call(this, "mainControl");
 
