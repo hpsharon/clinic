@@ -114,16 +114,19 @@ class HomeController extends Controller
         return $therapist;
     }
 
-    public function createNewPatient() {
-        $attributes = [
-            "name" => "Patient 3"
+    public function createNewPatient(Request $request) {
+        $data = $request->input("userDetails");
+        $arr_userDetails = [
+            "name" => $data['name']
         ];
-        $patient = new Patient($attributes);
-        $organization = Organization::find(3);
-        $patient->Organization()->associate($organization);
-        $patient->save();
-        return $patient->toArray();
+        $organizationId = $data['organizationId'];
+        $arr_therapistIds = $data['arr_therapistIds'];
+        $arr_parents = $data['parents'];
+        $patient = PatientController::createNewPatient($arr_userDetails, $organizationId, $arr_therapistIds, $arr_parents);
+        return $patient;
     }
+
+    
 
     public function getTherapist()
     {

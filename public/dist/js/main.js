@@ -12,16 +12,25 @@ define([
         initialize: function () {
             console.log("main.js init");
             var data = {
-                // orgId: 2,
-                // userDetails: {
-                //     name:"חן פליישר",
-                //     email: "chen.flyser@gmail.com",
-                //     password: "1234"
-                // }
-                therapistId: 76,
-                patientId: [1]
+                userDetails: {
+                    name:"מטופל של חן",
+                    organizationId: 2,
+                    arr_therapistIds: [76],
+                    parents: [
+                        {
+                            name: "אבא של מטופל של חן",
+                            email: "mail@mail.com",
+                            phone: "052-5555555"
+                        },
+                        {
+                            name: " אמא של מטופל של חן",
+                            email: "mail@mail.com",
+                            phone: "052-5555555"
+                        }
+                    ]
+                }
             }
-            AjaxControl.sendRequest("/syncTherapistWithPatients", data)
+            AjaxControl.sendRequest("/createNewPatient", data)
                 .then(this._showLoggedInUser);
             BaseControl.prototype.initialize.call(this, "mainControl");
 
