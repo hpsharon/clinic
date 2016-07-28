@@ -56,4 +56,14 @@ class PatientController extends Controller
         $patient->save();
         return $patient;
     }
+
+    /**
+     * @param $patientId
+     * @return mixed
+     */
+    public static function getPatient($patientId)
+    {
+        $patient = Patient::find($patientId);
+        return $patient;
+    }
 }

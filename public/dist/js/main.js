@@ -34,7 +34,7 @@ define([
                     ]
                 }
             }
-            AjaxControl.sendRequest("/updatePatient", data)
+            AjaxControl.sendRequest("/getPatient", {id:6})
                 .then(this._showLoggedInUser);
             BaseControl.prototype.initialize.call(this, "mainControl");
 

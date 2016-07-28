@@ -139,20 +139,17 @@ class HomeController extends Controller
         return $patient;
     }
 
-    
+    public function getPatient(Request $request)
+    {
+        $patientId = $request->input("id");
+        return PatientController::getPatient($patientId);
+    }
 
     public function getTherapist()
     {
 //        $user = Patient::find(15);
         $user = Therapist::find(13);
         return $user->toArray();
-    }
-
-    public function getPatient()
-    {
-        $patient = Patient::find(2);
-        return $patient->getMeetings();
-
     }
 
     public function createNewParent()

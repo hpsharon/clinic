@@ -58,3 +58,4 @@ Route::get('/syncTherapistWithPatients', 'HomeController@syncTherapistWithPatien
 //PATIENT
 Route::get('/createNewPatient', 'HomeController@createNewPatient');
 Route::get('/updatePatient', 'HomeController@updatePatient');
+Route::get('/getPatient', 'HomeController@getPatient');
