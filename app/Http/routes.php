@@ -35,7 +35,6 @@ Route::get('/getTherapist', 'HomeController@getTherapist');
 Route::get('/getPatient', 'HomeController@getPatient');
 Route::get('/createNewParent', 'HomeController@createNewParent');
 Route::get('/createNewMeeting', 'HomeController@createNewMeeting');
-Route::get('/getMeeting', 'HomeController@getMeeting');
 
 
 //ORGANIZATION
@@ -59,3 +58,7 @@ Route::get('/syncTherapistWithPatients', 'HomeController@syncTherapistWithPatien
 Route::get('/createNewPatient', 'HomeController@createNewPatient');
 Route::get('/updatePatient', 'HomeController@updatePatient');
 Route::get('/getPatient', 'HomeController@getPatient');
+
+//MEETING
+Route::get('/createNewMeeting', 'HomeController@createNewMeeting');
+Route::get('/getMeeting', 'HomeController@getMeeting');

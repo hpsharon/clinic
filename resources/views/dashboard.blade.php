@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
 
+    <script src="plugins/moment/moment-with-locales.js"></script>
     <script src="plugins/require/require.js" data-main="dist/js/entrypoint"></script>
     <!-- Theme style -->
 

@@ -145,6 +145,17 @@ class HomeController extends Controller
         return PatientController::getPatient($patientId);
     }
 
+    public function createNewMeeting(Request $request)
+    {
+        $startTime = $request->input("startTime");
+        $endTime = $request->input("endTime");
+        $orgId = $request->input("orgId");
+        $arr_patients = $request->input("arr_patients");
+        $arr_therapists = $request->input("arr_therapists");
+        $meeting = MeetingController::createNewMeeting($startTime, $endTime, $orgId, $arr_therapists, $arr_patients);
+        return $meeting;
+    }
+
     public function getTherapist()
     {
 //        $user = Patient::find(15);
@@ -165,26 +176,10 @@ class HomeController extends Controller
         return $parent->toArray();
     }
 
-    public function createNewMeeting()
+    public function getMeeting(Request $request)
     {
-        $meeting = new Meeting([
-            "start_time" => Carbon::now(),
-            "end_time" => Carbon::now()->addMinute(50),
-            "goals" => "goals meeting 2",
-            "tools" => "tools meeting 2",
-            "description" => "description meeting 2",
-            "remarks" => "remarks meeting 2",
-        ]);
-        $organization = Organization::find(2);
-        $meeting->Organization()->associate($organization);
-        $meeting->save();
-        return $meeting->toArray();
-    }
-
-    public function getMeeting()
-    {
-        $meeting = Meeting::find(1);
-        return $meeting->toArray();
+        $meetingId = $request->input("id");
+        return MeetingController::getMeeting($meetingId)->toArray();
     }
 
 }

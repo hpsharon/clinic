@@ -12,29 +12,13 @@ define([
         initialize: function () {
             console.log("main.js init");
             var data = {
-                userDetails: {
-                    name:"מטופל של חןןןן",
-                    patientId: 6,
-                    organizationId: 2,
-                    arr_therapistIds: [76],
-                    parents: [
-                        {
-
-                            name: "אבא של מטופל של חןןןןן",
-                            email: "mail@mail.com",
-                            phone: "052-5555555",
-                            parentId: 6
-                        },
-                        {
-                            name: " אמא של מטופל של חןןןן",
-                            email: "mail@mail.com",
-                            phone: "052-5555555",
-                            parentId: 7
-                        }
-                    ]
-                }
+                startTime: moment().unix(),
+                endTime: moment().add(50, "minutes").unix(),
+                orgId: 2,
+                arr_patients: [2, 6],
+                arr_therapists: [75, 76]
             }
-            AjaxControl.sendRequest("/getPatient", {id:6})
+            AjaxControl.sendRequest("/getMeeting", {id:31})
                 .then(this._showLoggedInUser);
             BaseControl.prototype.initialize.call(this, "mainControl");
 
