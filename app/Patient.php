@@ -8,7 +8,7 @@ class Patient extends Model
 {
 
     protected $fillable =   ['name'];
-    protected $appends =    ['therapist', 'organization', 'parents', 'healthInsurance'];
+    protected $appends =    ['therapist', 'organization', 'parents', 'healthInsurance', 'SeriesMeeting'];
     protected $hidden =     ['organization_id', "created_at", "deleted_at", "therapist_id", "updated_at",
                                 "pivot", 'health_insurance_id'];
 
@@ -35,9 +35,19 @@ class Patient extends Model
         return $this->belongsTo("App\HealthInsurance");
     }
 
+    public function SeriesMeeting()
+    {
+        return $this->hasMany("App\SeriesMeeting");
+    }
+
     public function getMeetings()
     {
         return $this->belongsToMany("App\Meeting")->get();
+    }
+    
+    public function getSeriesMeetingAttribute() 
+    {
+        return $this->attributes['series'] = $this->SeriesMeeting()->get()->first();
     }
 
     public function getHealthInsuranceAttribute()

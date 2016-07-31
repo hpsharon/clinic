@@ -62,3 +62,7 @@ Route::get('/getPatient', 'HomeController@getPatient');
 //MEETING
 Route::get('/createNewMeeting', 'HomeController@createNewMeeting');
 Route::get('/getMeeting', 'HomeController@getMeeting');
+
+//SERIES_MEETINGS
+Route::get('/newSeriesForPatient', 'HomeController@newSeriesForPatient');
+Route::get('/getMeetingsForSeriesId', 'HomeController@getMeetingsForSeriesId');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Meeting;
 use App\Parent_Patient;
+use App\SeriesMeeting;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -154,6 +155,21 @@ class HomeController extends Controller
         $arr_therapists = $request->input("arr_therapists");
         $meeting = MeetingController::createNewMeeting($startTime, $endTime, $orgId, $arr_therapists, $arr_patients);
         return $meeting;
+    }
+
+    public function newSeriesForPatient(Request $request)
+    {
+        $patientId = $request->input("patientId");
+        $numOfMeetings = $request->input("numOfMeetings");
+        $sm = SeriesMeetingsController::createNewSeriesForPatient($patientId, $numOfMeetings);
+        return $sm;
+    }
+
+    public function getMeetingsForSeriesId(Request $request)
+    {
+        $smId = $request->input("id");
+        $sm = SeriesMeetingsController::getMeetingsForSeriesId($smId);
+        return $sm;
     }
 
     public function getTherapist()

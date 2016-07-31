@@ -12,13 +12,10 @@ define([
         initialize: function () {
             console.log("main.js init");
             var data = {
-                startTime: moment().unix(),
-                endTime: moment().add(50, "minutes").unix(),
-                orgId: 2,
-                arr_patients: [2, 6],
-                arr_therapists: [75, 76]
+                patientId: 6,
+                numOfMeetings: 10
             }
-            AjaxControl.sendRequest("/getPatient", {id:6})
+            AjaxControl.sendRequest("/getMeetingsForSeriesId", {id:1})
                 .then(this._showLoggedInUser);
             BaseControl.prototype.initialize.call(this, "mainControl");
 

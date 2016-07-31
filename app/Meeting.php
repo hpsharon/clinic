@@ -31,6 +31,11 @@ class Meeting extends Model
         return $this->belongsToMany("App\User", $table, $foreignKey, $otherKey);
     }
 
+    public function SeriesMeeting()
+    {
+        return $this->belongsTo("App\SeriesMeeting");
+    }
+
     public function getPatientsAttribute()
     {
         return $this->attributes['patients'] = $this->Patients()->get();
