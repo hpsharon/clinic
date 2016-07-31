@@ -9,16 +9,12 @@ define([
 
     return BaseControl.extend({
 
-        _loggedInUser: null,
-
         initialize: function () {
             BaseControl.prototype.initialize.call(this, "headerControl", html);
         },
 
         render: function (user) {
             BaseControl.prototype.render.call(this);
-            this._loggedInUser = user;
-            console.log(user);
             this.$el.find(".headerControl_userName").text(HelperControl.user().name);
             this.$el.find(".headerControl_orgName").text(HelperControl.user().organization.name);
             return this;
