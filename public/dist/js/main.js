@@ -4,8 +4,9 @@ define([
     "AjaxControl",
     "dist/js/controls/baseControl/baseControl.js",
     "dist/js/controls/headerControl/headerControl.js",
-    "dist/js/controls/sidebarControl/sidebarControl.js"
-], function (_, $, AjaxControl, BaseControl, HeaderControl, SidebarControl) {
+    "dist/js/controls/sidebarControl/sidebarControl.js",
+    "dist/js/controls/contentControl/contentControl.js"
+], function (_, $, AjaxControl, BaseControl, HeaderControl, SidebarControl, ContentControl) {
 
     return BaseControl.extend({
         el: document.body,
@@ -13,21 +14,21 @@ define([
         _loggedInUserPromise: null,
         _headerControl: null,
         _sidebarControl: null,
+        _contentControl: null,
 
         initialize: function () {
-            console.log("main.js init");
             BaseControl.prototype.initialize.call(this, "mainControl");
 
             this._loggedInUserPromise = AjaxControl.sendRequest("/getLoggedInUser");
             this._headerControl = new HeaderControl();
             this._sidebarControl = new SidebarControl();
+            this._contentControl = new ContentControl();
 
             _.bindAll(this, "_storeLoggedInUser", "_renderSubControls");
             this.render();
         },
 
         render: function () {
-            console.log("render.js init");
             BaseControl.prototype.render.call(this);
             this._loggedInUserPromise
                 .then(this._storeLoggedInUser)
@@ -58,6 +59,9 @@ define([
 
             this.$el.find(".headerWrapper").html(this._headerControl.$el);
             this._headerControl.render(this._loggedInUser);
+            
+            this.$el.find(".content-wrapper").html(this._contentControl.$el);
+            this._contentControl.render();
         }
 
     });
