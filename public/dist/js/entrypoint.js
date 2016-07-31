@@ -9,6 +9,7 @@ requirejs.config({
         moment: "/../../plugins/moment/moment-with-locales",
         Bootstrap:'/../../bootstrap/js/bootstrap.min',
         slimscroll: '/../../plugins/slimScroll/jquery.slimscroll.min.js',
+        text: '/../../plugins/text/text',
         application: "/../dist/js/application"
     },
     //Remember: only use shim config for non-AMD scripts,

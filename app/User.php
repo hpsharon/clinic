@@ -43,7 +43,7 @@ class User extends Authenticatable
 
     public function getOrganizationAttribute()
     {
-        return $this->attributes['organization'] = $this->Organization()->get();
+        return $this->attributes['organization'] = $this->Organization()->get()->first();
     }
     
 }

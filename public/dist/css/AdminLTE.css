@@ -1238,8 +1238,8 @@ a:focus {
 }
 .navbar-custom-menu > .navbar-nav > li > .dropdown-menu {
   position: absolute;
-  right: 0;
-  left: auto;
+  left: 0;
+  right: auto;
 }
 @media (max-width: 991px) {
   .navbar-custom-menu > .navbar-nav {
