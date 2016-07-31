@@ -18,7 +18,7 @@ define([
                 arr_patients: [2, 6],
                 arr_therapists: [75, 76]
             }
-            AjaxControl.sendRequest("/getMeeting", {id:31})
+            AjaxControl.sendRequest("/getPatient", {id:6})
                 .then(this._showLoggedInUser);
             BaseControl.prototype.initialize.call(this, "mainControl");
 

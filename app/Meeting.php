@@ -10,7 +10,7 @@ class Meeting extends Model
     //
     protected $dates = ['start_time', 'end_time'];
     protected $fillable = ['start_time', 'end_time', 'goals','tools', 'description','remarks' ];
-    protected $hidden = ['created_at', 'organization_id', 'updated_at'];
+    protected $hidden = ['created_at', 'organization_id', 'updated_at', "deleted_at"];
     protected $appends = ['patients', 'therapists'];
 
     public function Organization()

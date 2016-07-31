@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Patient extends Model
 {
 
-    protected $fillable = ['name'];
-    protected $appends = ['therapist', 'organization', 'parents'];
-    protected $hidden = ['organization_id', "created_at", "deleted_at", "therapist_id", "updated_at", "pivot"];
+    protected $fillable =   ['name'];
+    protected $appends =    ['therapist', 'organization', 'parents', 'healthInsurance'];
+    protected $hidden =     ['organization_id', "created_at", "deleted_at", "therapist_id", "updated_at",
+                                "pivot", 'health_insurance_id'];
 
     public function therapists()
     {
@@ -28,10 +29,20 @@ class Patient extends Model
     {
         return $this->hasMany("App\Parent_Patient");
     }
+    
+    public function HealthInsurance()
+    {
+        return $this->belongsTo("App\HealthInsurance");
+    }
 
     public function getMeetings()
     {
         return $this->belongsToMany("App\Meeting")->get();
+    }
+
+    public function getHealthInsuranceAttribute()
+    {
+        return $this->attributes['healthInsurance'] = $this->HealthInsurance()->get()->first();
     }
 
     public function getTherapistAttribute()
