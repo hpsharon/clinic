@@ -1,10 +1,11 @@
 define([
     "dist/js/controls/baseControl/baseControl.js",
+    "dist/js/controls/helperControl/helperControl.js",
     "Underscore",
     "jQuery",
     "AjaxControl",
     "text!/dist/js/controls/headerControl/headerControl.html",
-], function (BaseControl, _, $, AjaxControl, html) {
+], function (BaseControl, HelperControl, _, $, AjaxControl, html) {
 
     return BaseControl.extend({
 
@@ -18,8 +19,8 @@ define([
             BaseControl.prototype.render.call(this);
             this._loggedInUser = user;
             console.log(user);
-            this.$el.find(".headerControl_userName").text(user.name);
-            this.$el.find(".headerControl_orgName").text(user.organization.name);
+            this.$el.find(".headerControl_userName").text(HelperControl.user().name);
+            this.$el.find(".headerControl_orgName").text(HelperControl.user().organization.name);
             return this;
         },
 

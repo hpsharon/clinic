@@ -1,12 +1,13 @@
 define([
     "Backbone",
+    "dist/js/controls/helperControl/helperControl.js",
     "dist/js/controls/baseControl/baseControl.js",
     "Underscore",
     "jQuery",
     "AjaxControl",
     "text!/dist/js/controls/sidebarControl/sidebarControl.html",
     "text!/dist/js/controls/sidebarControl/liItemTemplate.html",
-], function (Backbone, BaseControl, _, $, AjaxControl, html, ListItemTemplate) {
+], function (Backbone, HelperControl, BaseControl, _, $, AjaxControl, html, ListItemTemplate) {
 
     return BaseControl.extend({
 
@@ -19,10 +20,10 @@ define([
             this._liTemplate = _.template(ListItemTemplate);
         },
 
-        render: function (user) {
+        render: function () {
             BaseControl.prototype.render.call(this);
-            this._loggedInUser = user;
-            this.$el.find(".sidebarControl_username").text(user.name);
+
+            this.$el.find(".sidebarControl_username").text(HelperControl.user().name);
             this._initTabs();
             return this;
         },

@@ -1,10 +1,11 @@
 define([
     "dist/js/controls/baseControl/baseControl.js",
+    "dist/js/controls/helperControl/helperControl.js",
     "Underscore",
     "jQuery",
     "AjaxControl",
     "text!/dist/js/controls/contentControl/contentControl.html"
-], function (BaseControl, _, $, AjaxControl, html) {
+], function (BaseControl, HelperControl, _, $, AjaxControl, html) {
 
     return BaseControl.extend({
 
@@ -14,7 +15,7 @@ define([
             BaseControl.prototype.initialize.call(this, "contentControl", html);
         },
 
-        render: function (user) {
+        render: function () {
             BaseControl.prototype.render.call(this);
             return this;
         },

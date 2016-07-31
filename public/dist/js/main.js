@@ -2,11 +2,12 @@ define([
     "Underscore",
     "jQuery",
     "AjaxControl",
+    "dist/js/controls/helperControl/helperControl.js",
     "dist/js/controls/baseControl/baseControl.js",
     "dist/js/controls/headerControl/headerControl.js",
     "dist/js/controls/sidebarControl/sidebarControl.js",
     "dist/js/controls/contentControl/contentControl.js"
-], function (_, $, AjaxControl, BaseControl, HeaderControl, SidebarControl, ContentControl) {
+], function (_, $, AjaxControl, HelperControl, BaseControl, HeaderControl, SidebarControl, ContentControl) {
 
     return BaseControl.extend({
         el: document.body,
@@ -50,12 +51,12 @@ define([
         },
 
         _storeLoggedInUser: function (user) {
-            this._loggedInUser = user;
+            HelperControl.user(user);
         },
 
         _renderSubControls: function () {
             this.$el.find(".sidebarWrapper").html(this._sidebarControl.$el);
-            this._sidebarControl.render(this._loggedInUser);
+            this._sidebarControl.render();
 
             this.$el.find(".headerWrapper").html(this._headerControl.$el);
             this._headerControl.render(this._loggedInUser);
