@@ -1,5 +1,5 @@
 define([
-    "dist/js/controls/baseControl/baseControl.js",
+    "dist/js/controls/mgtControl/mgtControl.js",
     "dist/js/controls/helperControl/helperControl.js",
     "dist/js/controls/tableControl/tableControl.js",
     "Underscore",
@@ -7,40 +7,30 @@ define([
     "AjaxControl",
     "text!/dist/js/controls/organizationMgtControl/organizationMgtControl.html",
     "dist/js/controls/organizationMgtControl/organizationMgtControlFields.js"
-], function (BaseControl, HelperControl, Table, _, $, AjaxControl, html, fields) {
+], function (MgtControl, HelperControl, Table, _, $, AjaxControl, html, fields) {
 
-    return BaseControl.extend({
+    return MgtControl.extend({
 
         _orgPromise: null,
-        _orgTable: null,
 
         initialize: function () {
-            BaseControl.prototype.initialize.call(this, "headerControl", html);
+            MgtControl.prototype.initialize.call(this, "headerControl", html, fields);
             this._orgPromise = AjaxControl.sendRequest("/getOrgsForUser");
-            this._orgTable = new Table(fields);
-
-            _.bindAll(this, "populateFields");
-
+            
         },
 
         render: function () {
-            BaseControl.prototype.render.call(this);
-            this.$el.find(".box-body").html(this._orgTable.$el);
-            this._orgTable.render();
+            MgtControl.prototype.render.call(this);
+            this.$el.find(".box-body").html(this._table.$el);
             this._orgPromise
                 .then(this.populateFields);
             return this;
         },
 
         events: function () {
-            return _.extend({}, BaseControl.prototype.events, {
+            return _.extend({}, MgtControl.prototype.events, {
 
             });
-        },
-
-        populateFields: function (data) {
-            console.log(data);
-            this._orgTable.populateFields(data);
         }
 
     });
