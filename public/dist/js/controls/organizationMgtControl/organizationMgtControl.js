@@ -14,16 +14,17 @@ define([
         _orgPromise: null,
 
         initialize: function () {
-            MgtControl.prototype.initialize.call(this, "headerControl", html, fields);
+            MgtControl.prototype.initialize.call(this, "orgMgtControl", html, fields);
             this._orgPromise = AjaxControl.sendRequest("/getOrgsForUser");
-            
+            this.title("ארגונים");
         },
 
         render: function () {
             MgtControl.prototype.render.call(this);
-            this.$el.find(".box-body").html(this._table.$el);
+            this._contentDiv.html(this._table.$el);
             this._orgPromise
                 .then(this.populateFields);
+            this.removeCloseButton();
             return this;
         },
 

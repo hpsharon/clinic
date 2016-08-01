@@ -1,19 +1,19 @@
 define([
-    "dist/js/controls/baseControl/baseControl.js",
+    "dist/js/controls/boxControl/boxControl.js",
     "dist/js/controls/helperControl/helperControl.js",
     "dist/js/controls/tableControl/tableControl.js",
     "Underscore",
     "jQuery",
     "AjaxControl"
-], function (BaseControl, HelperControl, Table, _, $, AjaxControl) {
+], function (BoxControl, HelperControl, Table, _, $, AjaxControl) {
 
-    return BaseControl.extend({
+    return BoxControl.extend({
 
         _table: null,
         _fields: null,
 
         initialize: function (type, html, fields, css) {
-            BaseControl.prototype.initialize.call(this, type, html, css);
+            BoxControl.prototype.initialize.call(this, type, html, css);
             this.fields(fields);
             this._table = new Table(fields);
 
@@ -21,13 +21,13 @@ define([
         },
 
         render: function () {
-            BaseControl.prototype.render.call(this);
+            BoxControl.prototype.render.call(this);
             this._table.render();
             return this;
         },
 
         events: function () {
-            return _.extend({}, BaseControl.prototype.events, {
+            return _.extend({}, BoxControl.prototype.events, {
 
             });
         },
