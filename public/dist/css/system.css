@@ -10,3 +10,12 @@ tr.tableRowActive {
 .input-group {
     float: right;
 }
+
+.pagination li .active {
+    background-color: #F5F5F5;
+    cursor: not-allowed;
+}
+
+.pagination li .cursor-not-allowed {
+    cursor: not-allowed;
+}

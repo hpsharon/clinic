@@ -21,7 +21,7 @@ define([
         },
 
         events: function () {
-            return _.extend({}, BaseControl.prototype.events, {
+            return _.extend({}, BaseControl.prototype.events.call(this), {
 
             });
         }

@@ -11,6 +11,7 @@ define([
 
         _table: null,
         _fields: null,
+        _rawData: null,
 
         initialize: function (type, html, fields, css) {
             BoxControl.prototype.initialize.call(this, type, html, css);
@@ -19,7 +20,7 @@ define([
 
             this.bindEvent(this._table, "tableCellClick" ,this._onTableCellClick)
 
-            _.bindAll(this, "populateFields");
+            _.bindAll(this, "populateFields", "addPaging");
         },
 
         render: function () {
@@ -47,6 +48,15 @@ define([
             return result;
         },
 
+        rawData: function (rawData) {
+            var result = this._rawData;
+            if (typeof rawData !== "undefined") {
+                this._rawData = rawData;
+                result = this;
+            }
+            return result;
+        },
+
         _onTableCellClick: function (colName, rowId, rowData) {
             console.log(arguments);
 
@@ -54,10 +64,11 @@ define([
 
         _searchByQuery: function(searchQueryString){
             if (searchQueryString == "") {
-                this._table.showAllRows();
+                this._table._removeAllRows();
+                this.populateFields(this.rawData());
                 return;
             }
-            var data = this._table._tableData,
+            var data = this.rawData(),
                 arr_rowsToShow = [],
                 needToShowThisRow;
             _.each(data, function (rowData, key) {

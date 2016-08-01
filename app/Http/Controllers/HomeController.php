@@ -65,6 +65,8 @@ class HomeController extends Controller
         } else {
             return $org;
         }
+
+
     }
     
     public function deleteOrg(Request $request) 

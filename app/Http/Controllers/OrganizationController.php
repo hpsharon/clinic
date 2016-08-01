@@ -15,11 +15,15 @@ class OrganizationController extends Controller
      * @param Request $request: contains array called 'organization' with the org details
      * @return array|string
      */
-    public static function createNewOrganization(Request $request)
+    public static function createNewOrganization($orgName, $orgAddress, $orgPhone)
     {
         OrganizationController::checkPermissionsForCreatingNewOrg();
-        $organization = $request->input("organization");
-        $org = new Organization($organization);
+
+        $org = new Organization([
+            "name" => $orgName,
+            "address" => $orgAddress,
+            "phone" => $orgPhone
+        ]);
         $org->save();
         return $org;
     }
