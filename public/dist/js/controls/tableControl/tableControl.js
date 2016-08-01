@@ -157,6 +157,7 @@ define([
                 dataRow.append(cellObject);
             }, this);
             dataRow.attr("tableDataId", dataObj.id);
+            this._tableData[dataObj.id] = this._tableData[dataObj.id] || {};
             this._tableData[dataObj.id].elem = dataRow;
             return dataRow;
         },

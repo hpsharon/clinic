@@ -20,7 +20,7 @@ define([
 
             this.bindEvent(this._table, "tableCellClick" ,this._onTableCellClick)
 
-            _.bindAll(this, "populateFields", "addPaging");
+            _.bindAll(this, "populateFields");
         },
 
         render: function () {
