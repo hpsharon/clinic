@@ -59,11 +59,11 @@ class HomeController extends Controller
     public function getOrgsForUser()
     {
         $user = Auth::user();
-        $org = $user->Organization()->get()->first()->toArray();
+        $org = $user->Organization()->get()->toArray();
         if ($user->hasRole("SYSTEM_ADMIN")) {
             return OrganizationController::getAllOrgs();
         } else {
-            return OrganizationController::getOrgById($org['id']);
+            return $org;
         }
     }
     

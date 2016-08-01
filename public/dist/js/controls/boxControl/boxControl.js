@@ -29,8 +29,8 @@ define([
         },
 
         events: function () {
-            return _.extend({}, BaseControl.prototype.events, {
-
+            return _.extend({}, BaseControl.prototype.events.call(this), {
+                "keyup .boxControl_searchForm" : "_onSearchInputKeyUp"
             });
         },
 
@@ -49,6 +49,18 @@ define([
 
         removeCloseButton: function () {
             this.$el.find(".boxControl_removeBtn").remove();
+        },
+        
+        removeSearchOption: function () {
+            this.$el.find(".boxControl_searchForm").remove();
+        },
+
+        _onSearchInputKeyUp: function (e) {
+            var searchValue = e.target.value,
+                keyCode = e.keyCode;
+            if (HelperControl.isValidKeyCode(keyCode) || searchValue == ""){
+                this._searchByQuery(searchValue);
+            }
         }
 
     });

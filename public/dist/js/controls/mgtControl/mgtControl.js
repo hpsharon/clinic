@@ -17,6 +17,8 @@ define([
             this.fields(fields);
             this._table = new Table(fields);
 
+            this.bindEvent(this._table, "tableCellClick" ,this._onTableCellClick)
+
             _.bindAll(this, "populateFields");
         },
 
@@ -27,7 +29,7 @@ define([
         },
 
         events: function () {
-            return _.extend({}, BoxControl.prototype.events, {
+            return _.extend({}, BoxControl.prototype.events.call(this), {
 
             });
         },
@@ -42,6 +44,42 @@ define([
                 this._fields = fields;
                 result = this;
             }
+            return result;
+        },
+
+        _onTableCellClick: function (colName, rowId, rowData) {
+            console.log(arguments);
+
+        },
+
+        _searchByQuery: function(searchQueryString){
+            if (searchQueryString == "") {
+                this._table.showAllRows();
+                return;
+            }
+            var data = this._table._tableData,
+                arr_rowsToShow = [],
+                needToShowThisRow;
+            _.each(data, function (rowData, key) {
+                needToShowThisRow = this._isSearchCriterieMatchesRowData(searchQueryString, rowData);
+                if (needToShowThisRow) {
+                    arr_rowsToShow.push(rowData.id);
+                }
+            }, this)
+            this._table.hideAllRows();
+            this._table.showRowsById(arr_rowsToShow);
+        },
+
+        _isSearchCriterieMatchesRowData: function (searchQueryString, rowData) {
+            var isMatch = false,
+                result = false;
+            _.each(this.fields(), function(field, fieldIndex){
+                if (field && field.searchBy) {
+                    isMatch = rowData[fieldIndex].indexOf(searchQueryString) > -1;
+                    if (isMatch) {result = true};
+                }
+            }, this)
+
             return result;
         }
           

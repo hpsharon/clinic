@@ -8,13 +8,16 @@ define([
             exTitle: "משך טיפול (דקות)"
         },
         phone:{
-            exTitle: "טלפון"
+            exTitle: "טלפון",
+            searchBy: true
         },
         address: {
-            exTitle: "כתובת"
+            exTitle: "כתובת",
+            searchBy: true
         },
         name:{
-            exTitle: "שם"
+            exTitle: "שם",
+            searchBy: true
         },
         id: {
             exTitle: " "

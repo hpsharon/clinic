@@ -2,3 +2,11 @@ th, td {
     text-align: right !important;
     direction: rtl;
 }
+
+tr.tableRowActive {
+    background: #f5f5f5;
+}
+
+.input-group {
+    float: right;
+}

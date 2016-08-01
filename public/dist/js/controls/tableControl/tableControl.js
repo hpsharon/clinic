@@ -40,7 +40,7 @@ define([
         },
 
         events:  {
-            "click td": "_onCellClick"
+            "click td": "_onTableCellClick"
         },
 
         pushRowData: function (dataObj, rowId ) {
@@ -91,6 +91,26 @@ define([
             }, this);
         },
 
+        hideAllRows: function () {
+            _.each(this._tableData, function (rowData) {
+                rowData.elem.addClass("hide");
+            })
+        },
+
+        showAllRows: function () {
+            _.each(this._tableData, function (rowData) {
+                rowData.elem.removeClass("hide");
+            })
+        },
+
+        showRowsById: function (arr_rowIdToShow) {
+            var rowElem;
+            _.each(arr_rowIdToShow, function (rowId) {
+                rowElem = this._tableData[rowId].elem;
+                rowElem.removeClass("hide");
+            }, this)
+        },
+
         _removeAllRows: function () {
             this.$el.find("tr:not(.tbodyHeaders)").remove();
         },
@@ -110,12 +130,14 @@ define([
 
         },
 
-        _onCellClick: function (e) {
+        _onTableCellClick: function (e) {
             var clickedCell = $(e.target).closest("td"),
                 colName = clickedCell[0].dataset.colName,
                 rowData = this._getRowDataByElem(clickedCell),
                 rowId = $(clickedCell).closest("tr").attr("tableDataId");
 
+            this.$el.find("tr").removeClass("tableRowActive");
+            clickedCell.parent().addClass("tableRowActive");
             this.trigger("tableCellClick", colName, rowId, rowData);
         },
 
@@ -135,6 +157,7 @@ define([
                 dataRow.append(cellObject);
             }, this);
             dataRow.attr("tableDataId", dataObj.id);
+            this._tableData[dataObj.id].elem = dataRow;
             return dataRow;
         },
         

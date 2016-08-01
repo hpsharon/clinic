@@ -16,7 +16,7 @@ define([
         initialize: function () {
             MgtControl.prototype.initialize.call(this, "orgMgtControl", html, fields);
             this._orgPromise = AjaxControl.sendRequest("/getOrgsForUser");
-            this.title("ארגונים");
+            this.title("הארגון שלי");
         },
 
         render: function () {
@@ -25,11 +25,12 @@ define([
             this._orgPromise
                 .then(this.populateFields);
             this.removeCloseButton();
+            this.removeFooter();
             return this;
         },
 
         events: function () {
-            return _.extend({}, MgtControl.prototype.events, {
+            return _.extend({}, MgtControl.prototype.events.call(this), {
 
             });
         }

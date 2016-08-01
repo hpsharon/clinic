@@ -37,7 +37,7 @@ define([
         _initTabs: function () {
             this._tabs = [
                 {
-                    exTitle: "ראשי",
+                    exTitle: "ארגון",
                     icon: "fa fa-dashboard",
                     constructor: Backbone.View,
                 },
