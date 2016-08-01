@@ -47,6 +47,8 @@ Route::get('/updateOrganization', 'HomeController@updateOrganization');
 Route::get('/getAllOrgs', 'HomeController@getAllOrgs');
 Route::get('/deleteOrg', 'HomeController@deleteOrg');
 Route::get('/getAllUsersForOrg', 'HomeController@getAllUsersForOrg');
+Route::get('/getOrgsForUser', 'HomeController@getOrgsForUser');
+
 
 //USER
 Route::get('/createNewUser', 'HomeController@createNewUser');

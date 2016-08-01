@@ -1,22 +1,26 @@
 define([
     "dist/js/controls/baseControl/baseControl.js",
     "dist/js/controls/helperControl/helperControl.js",
+    "dist/js/controls/organizationMgtControl/organizationMgtControl.js",
     "Underscore",
     "jQuery",
     "AjaxControl",
-    "text!/dist/js/controls/headerControl/headerControl.html",
-], function (BaseControl, HelperControl, _, $, AjaxControl, html) {
+    "text!/dist/js/controls/mainPageControl/mainPageControl.html",
+], function (BaseControl, HelperControl, OrganizationMgtCtrl, _, $, AjaxControl, html) {
 
     return BaseControl.extend({
 
+        _organizationMgtCtrl: null,
+
         initialize: function () {
             BaseControl.prototype.initialize.call(this, "headerControl", html);
+            this._organizationMgtCtrl = new OrganizationMgtCtrl();
         },
 
         render: function () {
             BaseControl.prototype.render.call(this);
-            this.$el.find(".headerControl_userName").text(HelperControl.user().name);
-            this.$el.find(".headerControl_orgName").text(HelperControl.user().organization.name);
+            this.$el.html(this._organizationMgtCtrl.$el);
+            this._organizationMgtCtrl.render();
             return this;
         },
 

@@ -2,12 +2,13 @@ define([
     "Underscore",
     "jQuery",
     "AjaxControl",
+    "text!/dist/css/system.css",
     "dist/js/controls/helperControl/helperControl.js",
     "dist/js/controls/baseControl/baseControl.js",
     "dist/js/controls/headerControl/headerControl.js",
     "dist/js/controls/sidebarControl/sidebarControl.js",
     "dist/js/controls/contentControl/contentControl.js"
-], function (_, $, AjaxControl, HelperControl, BaseControl, HeaderControl, SidebarControl, ContentControl) {
+], function (_, $, AjaxControl, SystemCss, HelperControl, BaseControl, HeaderControl, SidebarControl, ContentControl) {
 
     return BaseControl.extend({
         el: document.body,
@@ -18,7 +19,7 @@ define([
         _contentControl: null,
 
         initialize: function () {
-            BaseControl.prototype.initialize.call(this, "mainControl");
+            BaseControl.prototype.initialize.call(this, "mainControl", undefined, SystemCss);
 
             this._loggedInUserPromise = AjaxControl.sendRequest("/getLoggedInUser");
             this._headerControl = new HeaderControl();

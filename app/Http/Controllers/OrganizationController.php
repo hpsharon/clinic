@@ -24,6 +24,11 @@ class OrganizationController extends Controller
         return $org;
     }
 
+    public static function getOrgById($orgId)
+    {
+        return Organization::find($orgId);
+    }
+
     /**
      * @param $orgId The organization id to update
      * @param $arr_valuesToUpdate key-value array with the params to update org
@@ -69,7 +74,7 @@ class OrganizationController extends Controller
 
     }
 
-    private function checkPermissionsForCreatingNewOrg()
+    private static function checkPermissionsForCreatingNewOrg()
     {
         $loggedInUser = Auth::user();
         if ($loggedInUser->hasRole('SYSTEM_ADMIN')){
@@ -79,7 +84,7 @@ class OrganizationController extends Controller
         }
     }
 
-    private function checkPermissionForUpdateOrg()
+    private static function checkPermissionForUpdateOrg()
     {
         //TODO:: the user can update the org if it is the org admin
         $loggedInUser = Auth::user();
@@ -90,7 +95,7 @@ class OrganizationController extends Controller
         }
     }
 
-    protected function checkPermissionsForGettingAllOrgs()
+    protected static function checkPermissionsForGettingAllOrgs()
     {
         $loggedInUser = Auth::user();
         if ($loggedInUser->hasRole('SYSTEM_ADMIN')){

@@ -55,6 +55,17 @@ class HomeController extends Controller
         $org = Organization::find($orgId);
         return $org->toArray();
     }
+
+    public function getOrgsForUser()
+    {
+        $user = Auth::user();
+        $org = $user->Organization()->get()->first()->toArray();
+        if ($user->hasRole("SYSTEM_ADMIN")) {
+            return OrganizationController::getAllOrgs();
+        } else {
+            return OrganizationController::getOrgById($org['id']);
+        }
+    }
     
     public function deleteOrg(Request $request) 
     {
