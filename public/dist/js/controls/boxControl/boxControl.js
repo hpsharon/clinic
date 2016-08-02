@@ -61,6 +61,10 @@ define([
             if (HelperControl.isValidKeyCode(keyCode) || searchValue == ""){
                 this._searchByQuery(searchValue);
             }
+        },
+
+        _removeLoadingOverlay: function () {
+            this.$el.find(".overlay").remove();
         }
 
     });

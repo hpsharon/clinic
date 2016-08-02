@@ -26,7 +26,7 @@ define([
             this._sidebarControl = new SidebarControl();
             this._contentControl = new ContentControl();
 
-            _.bindAll(this, "_storeLoggedInUser", "_renderSubControls");
+            _.bindAll(this, "_storeLoggedInUser", "_renderSubControls", "_bindSubcontrolEvents");
             this.render();
         },
 
@@ -34,7 +34,8 @@ define([
             BaseControl.prototype.render.call(this);
             this._loggedInUserPromise
                 .then(this._storeLoggedInUser)
-                .then(this._renderSubControls);
+                .then(this._renderSubControls)
+                .then(this._bindSubcontrolEvents)
 
             // a fix for hovering over select2 boxes.
             // the tooltip on hovering over the box is pushed in the bottom of the doc, making the scroll bars to display
@@ -51,6 +52,10 @@ define([
             });
         },
 
+        _bindSubcontrolEvents: function () {
+            this.bindEvent(this._sidebarControl, "sidebarTabClick", this._onSidebarClick)
+        },
+
         _storeLoggedInUser: function (user) {
             HelperControl.user(user);
         },
@@ -64,6 +69,13 @@ define([
             
             this.$el.find(".content-wrapper").html(this._contentControl.$el);
             this._contentControl.render();
+        },
+
+        _onSidebarClick: function (contentControlCtor) {
+            this._contentControl = new contentControlCtor();
+            this.$el.find(".content-wrapper").html(this._contentControl.$el);
+            this._contentControl.render();
+
         }
 
     });

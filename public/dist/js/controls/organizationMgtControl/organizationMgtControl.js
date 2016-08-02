@@ -17,18 +17,18 @@ define([
             MgtPagingControl.prototype.initialize.call(this, "orgMgtControl", html, fields);
             this._orgPromise = AjaxControl.sendRequest("/getOrgsForUser");
             this.title("הארגון שלי");
-
-            _.bindAll(this, "setRawData");
+            this._MAX_RECORDS_PER_PAGE = 5;
+            _.bindAll(this, "setRawData", "_showTable");
             
         },
 
         render: function () {
             MgtPagingControl.prototype.render.call(this);
-            this._contentDiv.html(this._table.$el);
             this._orgPromise
                 .then(this.setRawData)
                 .then(this.populateFields)
-                .then(this.addPaging);
+                .then(this.addPaging)
+                .then(this._showTable);
             this.removeCloseButton();
             return this;
         },
@@ -48,7 +48,10 @@ define([
             MgtPagingControl.prototype.populateFields.call(this, data);
         },
 
-        
+        _showTable: function () {
+            this._contentDiv.html(this._table.$el);
+            this._removeLoadingOverlay();
+        }
 
     });
 });
