@@ -15,8 +15,8 @@ define([
         _contentDiv: null,
         _footerDiv: null,
         
-        initialize: function () {
-            BaseControl.prototype.initialize.call(this, "boxControl", html);
+        initialize: function (type) {
+            BaseControl.prototype.initialize.call(this, type, html);
         },
 
         render: function () {
