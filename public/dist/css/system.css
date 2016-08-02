@@ -27,3 +27,30 @@ tr.tableRowActive {
     width: 100%;
     height: 100%;
 }
+
+.form-group label,
+.form-group input,
+.form-group .help-block{
+    direction: rtl;
+    float: right;
+}
+
+.form-group.form-elem-hidden {
+    display: none;
+}
+
+.modal-header .close {
+    float: left;
+}
+
+.modal-header .modal-title {
+    text-align: right;
+}
+
+.modal-dialog .modal-body {
+    text-align: right;
+}
+
+.modal-dialog .modal-footer {
+    text-align: left;
+}

@@ -10,6 +10,7 @@ requirejs.config({
         Bootstrap:'/../../bootstrap/js/bootstrap.min',
         slimscroll: '/../../plugins/slimScroll/jquery.slimscroll.min.js',
         text: '/../../plugins/text/text',
+        Modal: "/../dist/js/controls/modalControl/modalControl",
         application: "/../dist/js/application"
     },
     //Remember: only use shim config for non-AMD scripts,

@@ -38,6 +38,7 @@ define([
             var result = this._title;
             if (typeof title !== "undefined") {
                 this._title = title;
+                if (this._titleDiv) {this._titleDiv.html(title)};
                 result = this;
             }
             return result;

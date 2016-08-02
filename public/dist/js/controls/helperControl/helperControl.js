@@ -8,7 +8,7 @@ define([
 
     var HelperControl =  Backbone.Model.extend({
         _user: null,
-        
+
         user: function (user) {
             var result = this._user;
             if (typeof user !== "undefined") {
@@ -28,7 +28,12 @@ define([
                 (keycode > 218 && keycode < 223);   // [\]' (in order)
 
             return valid;
+        },
+
+        stringNotEmptyValidator: function (str) {
+            return str.trim() != "";
         }
+
 
     });
 
