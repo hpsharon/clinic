@@ -11,6 +11,7 @@ define([
 
         initialize: function () {
             ContentControl.prototype.initialize.call(this, "mainPageControl", MainPageControl);
+            this._pageTitle = "הארגון שלי";
         },
 
         render: function () {

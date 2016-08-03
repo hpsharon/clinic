@@ -14,6 +14,7 @@ define([
 
         initialize: function () {
             ContentControl.prototype.initialize.call(this, "contentControl", PatientPageControl);
+            this._pageTitle = "מטופלים";
 
         },
 
