@@ -4,24 +4,22 @@ define([
     "Underscore",
     "jQuery",
     "AjaxControl",
-    "dist/js/controls/mainPageControl/mainPageControl.js",
     "text!/dist/js/controls/contentControl/contentControl.html"
-], function (BaseControl, HelperControl, _, $, AjaxControl, MainPageControl, html) {
+], function (BaseControl, HelperControl, _, $, AjaxControl, html) {
 
     return BaseControl.extend({
         
-        _patientPageControl: null,
-        
+        _contentCtor: null,
 
-        initialize: function () {
-            BaseControl.prototype.initialize.call(this, "contentControl", html);
-            this._patientPageControl = new MainPageControl();
+        initialize: function (type, contentCtor) {
+            BaseControl.prototype.initialize.call(this, type, html);
+            this._contentCtor = new contentCtor();
         },
 
         render: function () {
             BaseControl.prototype.render.call(this);
-            this.$el.find(".content").html(this._patientPageControl.$el);
-            this._patientPageControl.render();
+            this.$el.find(".content").html(this._contentCtor.$el);
+            this._contentCtor.render();
             return this;
         },
 

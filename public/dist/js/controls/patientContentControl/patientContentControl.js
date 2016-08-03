@@ -1,31 +1,29 @@
 define([
-    "dist/js/controls/baseControl/baseControl.js",
+    "dist/js/controls/contentControl/contentControl.js",
     "dist/js/controls/helperControl/helperControl.js",
     "Underscore",
     "jQuery",
     "dist/js/controls/patientPageControl/patientPageControl.js",
     "text!/dist/js/controls/patientContentControl/patientContentControl.html"
-], function (BaseControl, HelperControl, _, $, PatientPageControl, html) {
+], function (ContentControl, HelperControl, _, $, PatientPageControl, html) {
 
-    return BaseControl.extend({
+    return ContentControl.extend({
         
-        _patientPageControl: null,
+        _contentCtor: null,
         
 
         initialize: function () {
-            BaseControl.prototype.initialize.call(this, "contentControl", html);
-            this._patientPageControl = new PatientPageControl();
+            ContentControl.prototype.initialize.call(this, "contentControl", PatientPageControl);
+
         },
 
         render: function () {
-            BaseControl.prototype.render.call(this);
-            this.$el.find(".content").html(this._patientPageControl.$el);
-            this._patientPageControl.render();
+            ContentControl.prototype.render.call(this);
             return this;
         },
 
         events: function () {
-            return _.extend({}, BaseControl.prototype.events, {
+            return _.extend({}, ContentControl.prototype.events, {
 
             });
         }

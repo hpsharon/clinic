@@ -2,14 +2,14 @@ define([
     "Backbone",
     "dist/js/controls/helperControl/helperControl.js",
     "dist/js/controls/baseControl/baseControl.js",
-    "dist/js/controls/contentControl/contentControl.js",
+    "dist/js/controls/mainContentControl/mainContentControl.js",
     "dist/js/controls/patientContentControl/patientContentControl.js",
     "Underscore",
     "jQuery",
     "AjaxControl",
     "text!/dist/js/controls/sidebarControl/sidebarControl.html",
     "text!/dist/js/controls/sidebarControl/liItemTemplate.html",
-], function (Backbone, HelperControl, BaseControl, ContentControl, PatientContentControl,
+], function (Backbone, HelperControl, BaseControl, MainPageContentControl, PatientContentControl,
              _, $, AjaxControl, html, ListItemTemplate) {
 
     return BaseControl.extend({
@@ -47,7 +47,7 @@ define([
                 {
                     exTitle: "ארגון",
                     icon: "fa fa-dashboard",
-                    constructor: ContentControl,
+                    constructor: MainPageContentControl,
                 },
                 {
                     exTitle: "מטפלים",
