@@ -12,17 +12,21 @@ use Mockery\CountValidator\Exception;
 class OrganizationController extends Controller
 {
     /**
-     * @param Request $request: contains array called 'organization' with the org details
-     * @return array|string
+     * @param $orgName
+     * @param $orgAddress
+     * @param $orgPhone
+     * @param $meetingDuration
+     * @return Organization
      */
-    public static function createNewOrganization($orgName, $orgAddress, $orgPhone)
+    public static function createNewOrganization($orgName, $orgAddress, $orgPhone, $meetingDuration)
     {
         OrganizationController::checkPermissionsForCreatingNewOrg();
 
         $org = new Organization([
             "name" => $orgName,
             "address" => $orgAddress,
-            "phone" => $orgPhone
+            "phone" => $orgPhone,
+            "meeting_duration" => $meetingDuration
         ]);
         $org->save();
         return $org;

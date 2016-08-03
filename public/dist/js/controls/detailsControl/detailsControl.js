@@ -50,11 +50,19 @@ define([
         },
 
         clearFields: function () {
-            this._contentDiv.html("");
+            _.each(this.fields(), function(dataObject, index){
+                dataObject.elem.remove();
+            });
         },
 
         collect: function () {
-            console.log(this.fields());
+            var data = {};
+            _.each(this.fields(), function(dataObject, index){
+                data[index] = dataObject.elem.find("input").val();
+            });
+
+            return data;
+
         },
 
         populateFields: function (data) {
@@ -117,6 +125,10 @@ define([
         _manipulateFieldElemForObject: function(fieldElem, elemObject) {
             if (elemObject.hidden) {
                 fieldElem.addClass("form-elem-hidden");
+            }
+
+            if (elemObject.disabled) {
+                fieldElem.find("input").attr("disabled", "disabled");
             }
 
             if (elemObject.logicalValidator) {

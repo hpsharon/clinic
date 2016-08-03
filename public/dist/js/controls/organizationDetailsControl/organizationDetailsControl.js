@@ -15,6 +15,8 @@ define([
             DetailsControl.prototype.initialize.call(this, "organizationDetailsControl", fields);
             this.fields(fields);
             this.title("פרטי ארגון");
+
+            _.bindAll(this, "_postOrgUpdateCreate");
         },
 
         render: function () {
@@ -24,7 +26,7 @@ define([
             this.removeSearchOption();
             this.populateFields();
             this._addButtonsToFooter();
-            this._removeLoadingOverlay();
+            this._hideLoadingOverlay();
             return this;
         },
 
@@ -49,7 +51,25 @@ define([
         },
 
         _onSaveButtonClick: function () {
-            var isDataValid = this._validateData();
+            var isDataValid = this._validateData(),
+                data = {},
+                url;
+            if (isDataValid) {
+                data.params = this.collect();
+                data.orgId = data.params.id;
+                url = data.orgId != "" ? "updateOrganization" : "createNewOrg";
+                this._showLoadingOverlay();
+                AjaxControl.sendRequest(url, data)
+                    .then(this._postOrgUpdateCreate)
+            }
+
+        },
+
+        _postOrgUpdateCreate: function (data) {
+            this._hideLoadingOverlay();
+            this.clearFields();
+            this.populateFields(data);
+            this.trigger("orgUpdateOrCreate", data);
         },
         
         _addButtonsToFooter: function () {

@@ -14,6 +14,7 @@ define([
         _titleDiv: null,
         _contentDiv: null,
         _footerDiv: null,
+        _loadingOverlay: null,
         
         initialize: function (type) {
             BaseControl.prototype.initialize.call(this, type, html);
@@ -25,6 +26,7 @@ define([
             this._contentDiv = this.$el.find(".box-body");
             this._titleDiv = this.$el.find(".box-title");
             this._titleDiv.html(this.title());
+            this._loadingOverlay = this.$el.find(".overlay");
             return this;
         },
 
@@ -64,9 +66,14 @@ define([
             }
         },
 
-        _removeLoadingOverlay: function () {
-            this.$el.find(".overlay").remove();
+        _hideLoadingOverlay: function () {
+            this._loadingOverlay.addClass("disnone");
+        },
+
+        _showLoadingOverlay: function () {
+            this._loadingOverlay.removeClass("disnone");
         }
+
 
     });
 });

@@ -65,8 +65,6 @@ class HomeController extends Controller
         } else {
             return $org;
         }
-
-
     }
     
     public function deleteOrg(Request $request) 
@@ -83,6 +81,18 @@ class HomeController extends Controller
         return $users;
     }
 
+    public function createNewOrganization(Request $request)
+    {
+        $orgName = $request->input("params")["name"];
+        $orgAddress = $request->input("params")["address"];
+        $orgPhone = $request->input("params")["phone"];
+        $meetingDuration = $request->input("params")["meeting_duration"];
+
+        $newOrg = OrganizationController::createNewOrganization($orgName, $orgAddress, $orgPhone, $meetingDuration);
+        return $newOrg;
+    }
+
+    //used in orgDeatils
     public function updateOrganization(Request $request)
     {
         $orgId = $request->input("orgId");

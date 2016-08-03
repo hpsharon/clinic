@@ -38,10 +38,15 @@ define([
 
         _bindEvents: function () {
             this.bindEvent(this._organizationMgtCtrl, 'organizationMgt_OrgClick', this._onOrgClick);
+            this.bindEvent(this._organizationDetailsControl, 'orgUpdateOrCreate', this._onOrgCreateOrUpdate);
         },
 
         _onOrgClick: function (org, orgId) {
             this._organizationDetailsControl.showOrg(org);
+        },
+
+        _onOrgCreateOrUpdate: function (org) {
+            this._organizationMgtCtrl.displayAddedUpdatedOrg(org);
         }
 
     });

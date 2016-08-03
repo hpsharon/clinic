@@ -48,13 +48,17 @@ define([
             MgtPagingControl.prototype.populateFields.call(this, data);
         },
 
+        displayAddedUpdatedOrg: function (org) {
+            this._table.pushRowData(org, org.id);
+        },
+
         _onTableCellClick: function (colName, rowId, rowData) {
             this.trigger("organizationMgt_OrgClick", rowData, rowId);
         },
 
         _showTable: function () {
             this._contentDiv.html(this._table.$el);
-            this._removeLoadingOverlay();
+            this._hideLoadingOverlay();
         }
 
     });

@@ -34,7 +34,7 @@ define([
         },
         id: {
             type: "text",
-            hidden: true,
+            disabled: true
         }
     })
 });

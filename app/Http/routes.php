@@ -42,7 +42,7 @@ Route::get('/createNewMeeting', 'HomeController@createNewMeeting');
 
 //ORGANIZATION
 
-Route::get('/createNewOrganization', 'OrganizationController@createNewOrganization');
+Route::get('/createNewOrg', 'HomeController@createNewOrganization');
 Route::get('/updateOrganization', 'HomeController@updateOrganization');
 Route::get('/getAllOrgs', 'HomeController@getAllOrgs');
 Route::get('/deleteOrg', 'HomeController@deleteOrg');

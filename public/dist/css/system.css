@@ -54,3 +54,7 @@ tr.tableRowActive {
 .modal-dialog .modal-footer {
     text-align: left;
 }
+
+.box-body .overlay.disnone {
+    display: none;
+}
