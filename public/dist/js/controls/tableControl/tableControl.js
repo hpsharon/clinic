@@ -113,6 +113,7 @@ define([
 
         _removeAllRows: function () {
             this.$el.find("tr:not(.tbodyHeaders)").remove();
+            this._tableData = {};
         },
 
 

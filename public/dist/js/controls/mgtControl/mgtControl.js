@@ -77,8 +77,18 @@ define([
                     arr_rowsToShow.push(rowData.id);
                 }
             }, this)
-            this._table.hideAllRows();
-            this._table.showRowsById(arr_rowsToShow);
+            this._table._removeAllRows();
+            this._showMatchingDataObj(arr_rowsToShow);
+        },
+
+        _showMatchingDataObj: function (arr_rowsToShow) {
+            var dataElem;
+            _.each(arr_rowsToShow, function (value) {
+                dataElem = _.find(this.rawData(), function(obj){
+                    return obj.id === value;
+                });
+                this._table.pushRowData(dataElem, dataElem.id);
+            }, this)
         },
 
         _isSearchCriterieMatchesRowData: function (searchQueryString, rowData) {
