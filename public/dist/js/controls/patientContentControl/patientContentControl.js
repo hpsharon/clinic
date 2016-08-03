@@ -3,10 +3,9 @@ define([
     "dist/js/controls/helperControl/helperControl.js",
     "Underscore",
     "jQuery",
-    "AjaxControl",
-    "dist/js/controls/mainPageControl/mainPageControl.js",
-    "text!/dist/js/controls/contentControl/contentControl.html"
-], function (BaseControl, HelperControl, _, $, AjaxControl, MainPageControl, html) {
+    "dist/js/controls/patientPageControl/patientPageControl.js",
+    "text!/dist/js/controls/patientContentControl/patientContentControl.html"
+], function (BaseControl, HelperControl, _, $, PatientPageControl, html) {
 
     return BaseControl.extend({
         
@@ -15,7 +14,7 @@ define([
 
         initialize: function () {
             BaseControl.prototype.initialize.call(this, "contentControl", html);
-            this._patientPageControl = new MainPageControl();
+            this._patientPageControl = new PatientPageControl();
         },
 
         render: function () {

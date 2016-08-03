@@ -3,12 +3,14 @@ define([
     "dist/js/controls/helperControl/helperControl.js",
     "dist/js/controls/baseControl/baseControl.js",
     "dist/js/controls/contentControl/contentControl.js",
+    "dist/js/controls/patientContentControl/patientContentControl.js",
     "Underscore",
     "jQuery",
     "AjaxControl",
     "text!/dist/js/controls/sidebarControl/sidebarControl.html",
     "text!/dist/js/controls/sidebarControl/liItemTemplate.html",
-], function (Backbone, HelperControl, BaseControl, ContentControl, _, $, AjaxControl, html, ListItemTemplate) {
+], function (Backbone, HelperControl, BaseControl, ContentControl, PatientContentControl,
+             _, $, AjaxControl, html, ListItemTemplate) {
 
     return BaseControl.extend({
 
@@ -38,6 +40,11 @@ define([
         _initTabs: function () {
             this._tabs = [
                 {
+                    exTitle: "מטופלים",
+                    icon: "fa fa-sitemap",
+                    constructor: PatientContentControl,
+                },
+                {
                     exTitle: "ארגון",
                     icon: "fa fa-dashboard",
                     constructor: ContentControl,
@@ -46,11 +53,6 @@ define([
                     exTitle: "מטפלים",
                     icon: "fa fa-sitemap",
                     constructor: Backbone.View
-                },
-                {
-                    exTitle: "מטופלים",
-                    icon: "fa fa-sitemap",
-                    constructor: Backbone.View,
                 }
             ]
             this._createElemsAndAppend();
