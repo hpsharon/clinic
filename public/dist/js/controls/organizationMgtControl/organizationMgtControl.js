@@ -5,15 +5,15 @@ define([
     "Underscore",
     "jQuery",
     "AjaxControl",
-    "text!/dist/js/controls/organizationMgtControl/organizationMgtControl.html",
     "dist/js/controls/organizationMgtControl/organizationMgtControlFields.js"
-], function (MgtPagingControl, HelperControl, Table, _, $, AjaxControl, html, fields) {
+], function (MgtPagingControl, HelperControl, Table, _, $, AjaxControl, fields) {
 
     return MgtPagingControl.extend({
 
         _orgPromise: null,
 
         initialize: function () {
+            var html = undefined;
             MgtPagingControl.prototype.initialize.call(this, "orgMgtControl", html, fields);
             this._orgPromise = AjaxControl.sendRequest("/getOrgsForUser");
             this.title("הארגון שלי");
