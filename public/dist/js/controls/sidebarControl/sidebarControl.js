@@ -4,12 +4,13 @@ define([
     "dist/js/controls/baseControl/baseControl.js",
     "dist/js/controls/mainContentControl/mainContentControl.js",
     "dist/js/controls/patientContentControl/patientContentControl.js",
+    "dist/js/controls/therapistContentControl/therapistContentControl.js",
     "Underscore",
     "jQuery",
     "AjaxControl",
     "text!/dist/js/controls/sidebarControl/sidebarControl.html",
     "text!/dist/js/controls/sidebarControl/liItemTemplate.html",
-], function (Backbone, HelperControl, BaseControl, MainPageContentControl, PatientContentControl,
+], function (Backbone, HelperControl, BaseControl, MainPageContentControl, PatientContentControl, TherapistContentControl,
              _, $, AjaxControl, html, ListItemTemplate) {
 
     return BaseControl.extend({
@@ -52,7 +53,7 @@ define([
                 {
                     exTitle: "מטפלים",
                     icon: "fa fa-sitemap",
-                    constructor: Backbone.View
+                    constructor: TherapistContentControl
                 }
             ]
             this._createElemsAndAppend();
