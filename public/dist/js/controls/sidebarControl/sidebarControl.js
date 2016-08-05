@@ -41,6 +41,11 @@ define([
         _initTabs: function () {
             this._tabs = [
                 {
+                    exTitle: "מטפלים",
+                    icon: "fa fa-sitemap",
+                    constructor: TherapistContentControl
+                },
+                {
                     exTitle: "מטופלים",
                     icon: "fa fa-sitemap",
                     constructor: PatientContentControl,
@@ -49,11 +54,6 @@ define([
                     exTitle: "ארגון",
                     icon: "fa fa-dashboard",
                     constructor: MainPageContentControl,
-                },
-                {
-                    exTitle: "מטפלים",
-                    icon: "fa fa-sitemap",
-                    constructor: TherapistContentControl
                 }
             ]
             this._createElemsAndAppend();
