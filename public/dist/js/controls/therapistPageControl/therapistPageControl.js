@@ -5,7 +5,7 @@ define([
     "Underscore",
     "jQuery",
     "AjaxControl",
-    "text!/dist/js/controls/mainPageControl/mainPageControl.html",
+    "text!/dist/js/controls/therapistPageControl/therapistPageControl.html",
 ], function (BaseControl, HelperControl, TherapistMgtControl, _, $, AjaxControl, html) {
 
     return BaseControl.extend({
@@ -23,6 +23,7 @@ define([
             BaseControl.prototype.render.call(this);
             this.$el.find(".mainPage_therapistMgt").html(this._therapistMgtCtrl.$el);
             this._therapistMgtCtrl.render();
+
             return this;
         },
 

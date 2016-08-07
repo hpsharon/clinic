@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Organization;
 use App\Patient;
 use App\Therapist;
 use App\User;
@@ -24,6 +25,19 @@ class TherapistController extends Controller
         return $user;
     }
 
+    public static function getTherapistsForOrgId($orgId) 
+    {
+        $org = Organization::find($orgId);
+        $allUsers =  $org->users()->get();
+        $therapist = [];
+        foreach ($allUsers as $user) {
+            if ($user->hasRole("THERAPIST")) {
+                array_push($therapist, $user);
+            }
+        }
+        return $therapist;
+    }
+    
     /**
      * @param $therapistId - The therapist id to attach the patient to
      * @param $patientId - The patient id

@@ -106,6 +106,14 @@ class HomeController extends Controller
         $orgs = OrganizationController::getAllOrgs();
         return $orgs;
     }
+
+
+    public function getTherapistsForOrgId(Request $request)
+    {
+        $orgId = $request->input("orgId");
+        $therapistForOrgId = TherapistController::getTherapistsForOrgId($orgId);
+        return $therapistForOrgId;
+    }
     
     public function createNewUser(Request $request)
     {

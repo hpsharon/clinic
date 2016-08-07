@@ -1,40 +1,23 @@
 define([
     "jQuery",
-    "Underscore",
-    "dist/js/controls/helperControl/helperControl.js",
-], function ($, _, HelperControl) {
+    "Underscore"
+], function ($, _) {
 
     return _.clone({
+        organization: {
+            exTitle: "ארגון",
+            path: "organization.name"
+        },
+        email:{
+            exTitle: "כתובת מייל",
+            searchBy: true
+        },
         name:{
             exTitle: "שם",
-            searchBy: true,
-            type: "text",
-            logicalValidator: HelperControl.stringNotEmptyValidator,
-            validationString: "שדה זה חייב להיות מלא"
-        },
-        address: {
-            exTitle: "כתובת",
-            searchBy: true,
-            type: "text",
-            logicalValidator: HelperControl.stringNotEmptyValidator,
-            validationString: "שדה זה חייב להיות מלא"
-        },
-        phone:{
-            exTitle: "טלפון",
-            searchBy: true,
-            type: "text",
-            logicalValidator: HelperControl.stringNotEmptyValidator,
-            validationString: "שדה זה חייב להיות מלא"
-        },
-        meeting_duration:{
-            exTitle: "משך טיפול (דקות)",
-            type: "text",
-            logicalValidator: HelperControl.stringNotEmptyValidator,
-            validationString: "שדה זה חייב להיות מלא"
+            searchBy: true
         },
         id: {
-            type: "text",
-            disabled: true
+            exTitle: " "
         }
     })
 });

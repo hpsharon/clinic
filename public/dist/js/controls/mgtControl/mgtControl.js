@@ -26,6 +26,7 @@ define([
         render: function () {
             BoxControl.prototype.render.call(this);
             this._table.render();
+            this._contentDiv.html(this._table.$el);
             return this;
         },
 

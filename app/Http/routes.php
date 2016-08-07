@@ -59,6 +59,9 @@ Route::get('/createNewTherapistForOrg', 'HomeController@createNewTherapistForOrg
 Route::get('/associateTherapistToSinglePatient', 'HomeController@associateTherapistToSinglePatient');
 Route::get('/syncTherapistWithPatients', 'HomeController@syncTherapistWithPatients');
 
+//in use
+Route::get('/getTherapistsForOrgId', 'HomeController@getTherapistsForOrgId');
+
 //PATIENT
 Route::get('/createNewPatient', 'HomeController@createNewPatient');
 Route::get('/updatePatient', 'HomeController@updatePatient');

@@ -58,3 +58,7 @@ tr.tableRowActive {
 .box-body .overlay.disnone {
     display: none;
 }
+
+select {
+    direction: rtl;
+}
