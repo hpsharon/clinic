@@ -48,7 +48,7 @@ define([
         },
 
         _handleTherapistList: function (therapists) {
-            console.log(therapists);
+            this._table._removeAllRows();
             this.populateFields(therapists)
         }
         
