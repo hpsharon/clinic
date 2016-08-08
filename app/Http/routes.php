@@ -60,6 +60,7 @@ Route::get('/associateTherapistToSinglePatient', 'HomeController@associateTherap
 Route::get('/syncTherapistWithPatients', 'HomeController@syncTherapistWithPatients');
 
 //in use
+Route::get('/getTherapistById', 'HomeController@getTherapistById');
 Route::get('/getTherapistsForOrgId', 'HomeController@getTherapistsForOrgId');
 
 //PATIENT

@@ -17,20 +17,7 @@ define([
 
         initialize: function () {
             BaseControl.prototype.initialize.call(this, "tabControl", html);
-            this._tabs = [
-                {
-                    title: "פרטים",
-                    constructor: Backbone.View
-                },
-                {
-                    title: "רשימת מטופלים",
-                    constructor: Backbone.View
-                },
-                {
-                    title: "יומן עבודה",
-                    constructor: Backbone.View
-                }
-            ]
+            _.bindAll(this, "_onTabClick");
         },
 
         render: function () {
@@ -63,11 +50,11 @@ define([
         _onTabClick: function (e) {
             var target = e.target,
                 tab = this._findTabByElem(target),
-                Constructor = tab.constructor;
-            this._activeTab = new Constructor();
+                Constructor = tab.constructor,
+                params = tab.params ? tab.params.bind(this)() : [];
+            this._activeTab = new Constructor(params);
             this._tabContentDiv.html(this._activeTab.$el);
             this._activeTab.render();
-            console.log(tab);
         },
 
         _findTabByElem: function (elem) {

@@ -114,6 +114,13 @@ class HomeController extends Controller
         $therapistForOrgId = TherapistController::getTherapistsForOrgId($orgId);
         return $therapistForOrgId;
     }
+
+    public function getTherapistById(Request $request)
+    {
+        $id = $request->input("id");
+        $ther = Therapist::find($id);
+        return $ther;
+    }
     
     public function createNewUser(Request $request)
     {

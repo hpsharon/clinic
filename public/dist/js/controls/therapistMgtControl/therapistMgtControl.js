@@ -41,6 +41,12 @@ define([
             return data;
         },
 
+        _onTableCellClick: function (colName, rowId, rowData) {
+            this.trigger("therapistSelect", rowId);
+        },
+
+
+
         _onOrgChange: function (orgId) {
             AjaxControl.sendRequest("/getTherapistsForOrgId", {orgId: orgId})
                 .then(this.setRawData)
